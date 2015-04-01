@@ -214,9 +214,12 @@ p, ul { color: rgba(34,42,49,.7); }
 /* ======================================================================== */
 /* ! Nav
 /* ======================================================================== */
+.navbar .brand img {
+  width: 257px;
+}
 .navbar .brand {
 	color: #222a31;
-	padding: 24px 15px 0;
+	/*padding: 24px 15px 0;*/
 	font-size: 30px;
 }
 .nav {
@@ -224,7 +227,7 @@ p, ul { color: rgba(34,42,49,.7); }
 	text-shadow: none;	
 }
 .navbar-inner {
-	background: #fff;
+	background: #E6E6E6;
 	background-image: none;
 }
 .navbar .nav > li > a {
