@@ -10,7 +10,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="700"
-   height="145"
+   height="290"
    id="svg3789"
    version="1.1"
    inkscape:version="0.48.4 r9939"
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="431.01675"
-     inkscape:cy="58.710255"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="407.86355"
+     inkscape:cy="158.28403"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -51,15 +51,15 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-907.36218)">
+     transform="translate(0,-762.36218)">
     <path
-       d="m 0.00970752,1052.3731 700.04034248,0 0,-145.00005 -700.04034248,0 0,145.00005 z"
+       d="m 0.00970752,1052.3731 700.04034248,0 0,-289.98851 -700.04034248,0 0,289.98851 z"
        style="fill:#008080;stroke:none"
        id="path30"
        inkscape:connector-curvature="0" />
     <g
        id="g3033"
-       transform="translate(206.42857,0)">
+       transform="matrix(2.0504479,0,0,2.0504479,70.381822,-1103.4309)">
       <path
          inkscape:connector-curvature="0"
          id="path3655"
