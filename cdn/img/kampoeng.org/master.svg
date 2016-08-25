@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-652.39021"
-     inkscape:cy="603.08539"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="-1229.7578"
+     inkscape:cy="524.20201"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -466,8 +466,10 @@
          y="421.01685" />
     </g>
     <g
-       id="g3903"
-       transform="translate(171.42858,68.571429)">
+       id="g3112"
+       transform="translate(0,117.1777)"
+       inkscape:export-xdpi="72.021217"
+       inkscape:export-ydpi="72.021217">
       <rect
          inkscape:export-ydpi="71"
          inkscape:export-xdpi="71"
@@ -475,12 +477,12 @@
          style="fill:#faa955;fill-opacity:1;stroke:none"
          id="rect3063"
          width="812.91815"
-         height="566.23676"
-         x="-1035.6564"
-         y="-4.1116347" />
+         height="962.21649"
+         x="-864.22778"
+         y="-109.28645" />
       <g
          inkscape:export-filename="/home/aank/Greenbox/base_project/kampung.org/japung/rect3097.png"
-         transform="matrix(1.5540154,0,0,-1.5540154,-1210.1507,856.65706)"
+         transform="matrix(1.5540154,0,0,-1.5540154,-1040.7221,925.22849)"
          inkscape:label="JAPUNG LOGO"
          id="g3117"
          inkscape:export-xdpi="71.955276"
@@ -533,7 +535,7 @@
          inkscape:export-xdpi="71.955276"
          id="g3065"
          inkscape:label="JAPUNG LOGO"
-         transform="matrix(0.78554921,0,0,-0.78554921,-915.36775,506.7459)">
+         transform="matrix(0.93164679,0,0,-0.93164679,-797.91907,620.21265)">
         <g
            style="fill:#ffffff"
            id="g3067">
@@ -579,27 +581,27 @@
          inkscape:export-xdpi="71"
          inkscape:export-filename="/home/aank/Greenbox/base_project/kampung.org/japung/rect3097.png"
          xml:space="preserve"
-         style="font-size:13.65458393px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:1.54475856px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"
-         x="-771.69763"
-         y="497.18985"
+         style="font-size:16.19408417px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:1.83205497px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"
+         x="-627.52899"
+         y="608.87939"
          id="text3083"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
            id="tspan3085"
-           x="-771.69763"
-           y="497.18985">Development Program of Kampoeng</tspan></text>
+           x="-627.52899"
+           y="608.87939">Development Program of Kampoeng</tspan></text>
       <text
          inkscape:export-ydpi="71"
          inkscape:export-xdpi="71"
          inkscape:export-filename="/home/aank/Greenbox/base_project/kampung.org/japung/rect3097.png"
          sodipodi:linespacing="125%"
          id="text3087"
-         y="514.7135"
-         x="-719.96118"
-         style="font-size:13.65458393px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:1.54475856px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"
+         y="629.66205"
+         x="-566.17047"
+         style="font-size:16.19408417px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:1.83205497px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"
          xml:space="preserve"><tspan
-           y="514.7135"
-           x="-719.96118"
+           y="629.66205"
+           x="-566.17047"
            id="tspan3089"
            sodipodi:role="line">with Greenboxindonesia</tspan></text>
       <rect
@@ -608,17 +610,17 @@
          inkscape:export-filename="/home/aank/Greenbox/base_project/kampung.org/japung/rect3097.png"
          style="fill:#ffffff;fill-opacity:1;stroke:none"
          id="rect3095"
-         width="651.77631"
-         height="0.70715559"
-         x="-951.01245"
-         y="464.63968" />
+         width="772.99463"
+         height="0.83867341"
+         x="-840.19299"
+         y="570.27545" />
       <rect
          inkscape:export-ydpi="71"
          inkscape:export-xdpi="71"
-         y="464.63968"
-         x="-747.61084"
-         height="4.5283008"
-         width="244.97289"
+         y="570.27545"
+         x="-598.96246"
+         height="5.3704805"
+         width="290.53329"
          id="rect3097"
          style="fill:#ffffff;fill-opacity:1;stroke:none" />
     </g>
