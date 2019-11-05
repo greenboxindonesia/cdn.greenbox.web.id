@@ -5,9 +5,16 @@ Author URI: https://onepagelove.com
 Template URI: https://onepagelove.com/split
 Description: Split is a centrally-divided layout for a professional online presence with a big image or video left with alongside content.
 */
-/* -- CSS Reset -- */
+/* -- CSS Reset -- 
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600");
 @import url("https://fonts.googleapis.com/css?family=Lora");
+*/
+@font-face {
+  font-family: 'Google Sans';
+  src:  url('../../fonts/googlesans-regular.woff2') format('woff2'),
+        url('/assets/fonts/googlesans-regular.woff') format('woff');,
+       url('/assets/fonts/GoogleSans-Regular.ttf') format('truetype');
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -103,11 +110,11 @@ html {
 
 body.page-template-page-fullsingle-split {
   background-color: #061C30;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Google Sans', sans-serif;
   font-weight: 400;
   font-size: 21px;
   line-height: 33px;
-  letter-spacing: -0.2px;
+  letter-spacing: 0.6px;
   color: #848d96;
   -webkit-animation: fadein 2s;
           animation: fadein 2s; }
@@ -187,37 +194,48 @@ body.page-template-page-fullsingle-split {
     color: #47bec7; 
   }
 .split-intro .tagline {
-    color: #CCCCCC; 
+    color: #CCCCCC;
+    letter-spacing: 2.5px;
   }
 .split-bio {
     padding: 40px 0 40px 0;
-    font-family: 'Lora', serif; 
+    font-family: 'Google Sans', serif; 
   }
 @media (max-width: 1200px) {
     .split-bio {
       padding: 30px 0; }
     .split-intro h1 {
-    font-weight: 400;
-    text-transform: uppercase;
-    font-size: 16px;
-    line-height: 16px;
-    margin-bottom: 16px;
-    letter-spacing: 0.4px;
-    color: #47bec7; 
-    }
+      font-weight: 400;
+      text-transform: uppercase;
+      font-size: 16px;
+      line-height: 16px;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      color: #47bec7; 
+      }
+    .split-intro .tagline {
+      color: #CCCCCC;
+      font-size: 57px;
+      letter-spacing: 2.5px;
+      }
   }
 @media (max-width: 800px) {
     .split-bio {
       padding: 20px 0; } 
     .split-intro h1 {
-    font-weight: 400;
-    text-transform: uppercase;
-    font-size: 16px;
-    line-height: 16px;
-    margin-bottom: 16px;
-    letter-spacing: 0.4px;
-    color: #47bec7; 
-    }
+      font-weight: 400;
+      text-transform: uppercase;
+      font-size: 16px;
+      line-height: 16px;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      color: #47bec7; 
+      }
+      .split-intro .tagline {
+      color: #CCCCCC;
+      font-size: 57px;
+      letter-spacing: 2.5px;
+      }
   }
 .split-bio p {
     color: #848d96; 
