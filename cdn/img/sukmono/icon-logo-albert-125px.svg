@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="125"
+   height="125"
+   viewBox="0 0 33.072915 33.072918"
+   version="1.1"
+   id="svg1031"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="icon-albert-125px (copy).svg">
+  <defs
+     id="defs1025" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="46.954133"
+     inkscape:cy="58.897447"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1560"
+     inkscape:window-height="877"
+     inkscape:window-x="317"
+     inkscape:window-y="133"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata1028">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-263.92707)">
+    <g
+       transform="matrix(0.46197682,0,0,0.46197682,-293.53709,-39.415724)"
+       id="g10076">
+      <circle
+         style="opacity:1;fill:#c6e9af;fill-opacity:1;stroke:none;stroke-width:0.7888509;stroke-miterlimit:4;stroke-dasharray:none"
+         id="circle10072"
+         cx="670.6908"
+         cy="688.20215"
+         r="31.466253" />
+      <path
+         sodipodi:nodetypes="cccccccccc"
+         inkscape:connector-curvature="0"
+         id="path10074"
+         d="m 670.90474,656.65736 31.98823,55.45424 -22.61987,0.0657 -20.71076,-36.05582 z m -15.71194,27.00645 11.45083,19.54207 -14.76696,25.00585 -11.26487,-19.26631 z"
+         style="opacity:1;fill:#447821;fill-opacity:1;stroke:none;stroke-width:0.10147329;stroke-miterlimit:4;stroke-dasharray:none" />
+    </g>
+  </g>
+</svg>
