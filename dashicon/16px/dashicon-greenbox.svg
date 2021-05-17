@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16"
+   height="16"
+   viewBox="0 0 4.2333333 4.2333335"
+   version="1.1"
+   id="svg1888"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="dashicon-greenbox.svg">
+  <defs
+     id="defs1882" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="31.678384"
+     inkscape:cx="3.4443722"
+     inkscape:cy="8.6654998"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1396"
+     inkscape:window-height="841"
+     inkscape:window-x="148"
+     inkscape:window-y="58"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata1885">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-292.76665)">
+    <path
+       id="path4640"
+       d="m 2.091681,296.95821 1.7641101,-0.99352 v -1.73163 l -1.1055492,-0.64132 v 0.66492 l 0.6792594,0.38157 -8.454e-4,0.61782 -0.8289195,-0.46458 v -1.70269 L 2.0925066,292.8037 v 2.28169 l 0.00114,0.94098 -0.4913143,0.34238 v -2.29135 l -0.9161005,0.57991 2.3238e-4,0.58697 0.76285702,-0.47103 v 0.50795 l -1.11226386,0.68341 z"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.06278198"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccccccccccccc"
+       inkscape:export-xdpi="72"
+       inkscape:export-ydpi="72"
+       inkscape:transform-center-x="1.001237"
+       inkscape:transform-center-y="-98.57595" />
+  </g>
+</svg>
