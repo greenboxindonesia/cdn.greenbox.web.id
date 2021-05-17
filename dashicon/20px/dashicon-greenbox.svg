@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="15.839192"
-     inkscape:cx="-1.1709162"
-     inkscape:cy="7.5212277"
+     inkscape:cx="-1.5963433"
+     inkscape:cy="13.75131"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -45,7 +45,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -56,13 +56,13 @@
      transform="translate(0,-291.70832)">
     <path
        id="path4640"
-       d="m 2.6542479,296.95821 2.2121561,-1.24586 v -2.17141 l -1.3863349,-0.80422 v 0.83381 l 0.8517766,0.47848 -0.00106,0.77473 -1.0394473,-0.58258 v -2.13514 l -0.6360553,-0.35748 v 2.8612 l 0.00143,1.17997 -0.6160976,0.42933 v -2.87331 l -1.14877019,0.72719 2.914e-4,0.73605 0.95660629,-0.59065 v 0.63695 l -1.39475494,0.85699 z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.07872725"
+       d="m 2.658581,296.99519 2.2391436,-1.26106 v -2.1979 l -1.4032477,-0.81404 v 0.84399 l 0.862168,0.48432 -0.00108,0.78418 -1.0521282,-0.58969 v -2.16118 l -0.643815,-0.36185 v 2.89611 l 0.00145,1.19437 -0.6236137,0.43456 v -2.90836 l -1.16278485,0.73606 2.9495e-4,0.74503 0.9682766,-0.59786 v 0.64472 l -1.41177052,0.86745 z"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.0796877"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccccccccccccccccc"
        inkscape:export-xdpi="72"
        inkscape:export-ydpi="72"
-       inkscape:transform-center-x="1.2555294"
-       inkscape:transform-center-y="-123.61212" />
+       inkscape:transform-center-x="1.2708487"
+       inkscape:transform-center-y="-125.12015" />
   </g>
 </svg>
