@@ -1,0 +1,36 @@
+{	
+	"success":true,
+	"message":"Data megawe aank",
+	"dataweb":
+	[
+		{
+			"timeline_web":"30.07.2020 - Now",
+			"tipe_web":"E-Commerce",
+			"klien_web":"Revol Distro"
+		}
+	],
+	"datadesain":
+	[
+		{
+			"timeline_desain":"16.07.2020 - Selesai",
+			"jenis_desain":"Design Banner",
+			"klien_desain":"Sokoria - KSORKA"
+		}
+	],
+	"datangrakit":
+	[
+		{
+			"timeline_grakit":"19.08.2020 - Now",
+			"ngrakit":"AMP dan PWA",
+			"klien_ngrakit":"Repository"
+		}
+	],
+	"datarewang":
+	[
+		{
+			"timeline_rewang":"22.09.2020 - Selesai",
+			"rewang":"Maintenance",
+			"klien_rewang":"Baterai Laptopku"
+		}
+	]
+}
