@@ -1,12 +1,6 @@
 {	
 	"success":true,
 	"message":"Data Website Klien",
-	"daftarklien":
-	[
-		{
-			"alpha":"2022-10-24 23:59:59",
-		}
-	],
 	"dataweb":
 	[
 		{
@@ -15,10 +9,18 @@
 			"klien_web":"Revol Distro"
 		}
 	],
+	"klienweb":
+	[
+		{
+			"anggo":"2022-10-24 23:59:59",
+			"beta":"2022-9-24 23:59:59",
+			"delta":"2022-8-24 23:59:59"
+		}
+	],
 	"datadesain":
 	[
 		{
-			"timeline_desain":"16.07.2020 - Selesai",
+			"timeline_desain":"16.07.2020 - true",
 			"jenis_desain":"Design Banner",
 			"klien_desain":"Sokoria - KSORKA"
 		}
