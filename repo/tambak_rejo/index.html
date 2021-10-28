@@ -1,479 +1,480 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>3Sixty Project</title>
-		<!--projectdescription--><meta name="description" content="New 3Sixty Virtual Tour Project"><!--projectdescription-end-->
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta charset="utf-8">
-		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
-		
-		<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
-		<link rel="stylesheet" type="text/css" href="style.css">
-		
-		<!-- Insert this line above script imports  -->
-		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-		
-		<script src="imagedata.js"></script>
-		<script src="jquery.js"></script>
-		<script src="three.min.js"></script>
-		<script src="panolens.min.js"></script>
-		
-		<!-- Insert this line after script imports -->
-		<script>if (window.module) module = window.module;</script>
-		
-		<style>
-		
-			
-						
-			/* SCROLLBAR STYLING */
-			/* width */
-			::-webkit-scrollbar {
-				width: 6px;
-				height: 6px;
-			}
-			/* Track */
-			::-webkit-scrollbar-track {
-				background: inherit; 
-			}
-			/* Handle */
-			::-webkit-scrollbar-thumb {
-				background: #eba576; 
-				transition: background .5s;
-			}
-			/* Handle on hover */
-			::-webkit-scrollbar-thumb:hover {
-				background: #ff6600; 
-			}
+<html lang="en">
+	<head>
+		<title>Tambak Rejo Beach | LAV-FIS UM</title>
+		<!--projectdescription--><meta name="description" content="New 3Sixty Virtual Tour Project"><!--projectdescription-end-->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+		
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		
+		<!-- Insert this line above script imports  -->
+		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+		
+		<script src="imagedata.js"></script>
+		<script src="jquery.js"></script>
+		<script src="three.min.js"></script>
+		<script src="panolens.min.js"></script>
+		
+		<!-- Insert this line after script imports -->
+		<script>if (window.module) module = window.module;</script>
+		
+		<style>
+		
+			
+						
+			/* SCROLLBAR STYLING */
+			/* width */
+			::-webkit-scrollbar {
+				width: 6px;
+				height: 6px;
+			}
+			/* Track */
+			::-webkit-scrollbar-track {
+				background: inherit; 
+			}
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+				background: #eba576; 
+				transition: background .5s;
+			}
+			/* Handle on hover */
+			::-webkit-scrollbar-thumb:hover {
+				background: #ff6600; 
+			}
 
 
-			html, body {
-				margin: 0;
-				width: 100%;
-				height: 100%;
-				overflow: hidden;
-				background-color: #000;
-				color; black;
-			}
+			html, body {
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				background-color: #000;
+				color; black;
+			}
 
-			a:link, a:visited{
-				color: #bdc3c7;	
-			}
+			a:link, a:visited{
+				color: #bdc3c7;	
+			}
 
-			.fullwrapper{
-				position: fixed;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				background-color: black;
-			}
-			
-			#container {
-                width: 100%;
-                height: 100%;
-            }
-			
-			#tmp{
-				position: fixed;
-				top: 0;
-				left: 0; 
-				right: 0;
-				bottom: 0;
-				padding: 100px;
-				background-color: rgba(0,0,0,.5);
-				backdrop-filter: blur(5px);
-				display: none;
-			}
-		</style>
-	</head>
-	<body id="body">
-	    <div id="container" style="color: black;"></div>
-    	<div id="loading" class="fullwrapper" style="display: table; width: 100%; height: 100%;">
-    		<div style="display: table-cell; vertical-align: middle; text-align: center; color: white; font-size: 30px; padding: 50px;">
-    			<!--loadingtext--><p>Please Wait...</p><!--loadingtext-end-->
-    		</div>
-    	</div>
-		
-		<div id="tmp">
-			<div style="width: 100%; height: 100%; overflow: auto; box-sizing: border-box; position: relative;" id="tmpcontent"></div>
-			<div style="position: absolute; top: 0; right: 0; padding: 10px; color: red; font-size: 20px; z-index: 10;" onclick="hideTemp()"><i class="fa fa-times"></i></div>
-		</div>
-    	<script>
-			
-            var container = document.querySelector( '#container' );
-			/*panolens*/
-            var viewer = new PANOLENS.Viewer( { container: container , controlBar: false,  output: 'console' , autoHideInfospot: false, } );
-			/*panolens-end*/
-			
-			viewer.addUpdateCallback(function(){});
-			
-			/*panoramas*/
+			.fullwrapper{
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: black;
+			}
+			
+			#container {
+                width: 100%;
+                height: 100%;
+            }
+			
+			#tmp{
+				position: fixed;
+				top: 0;
+				left: 0; 
+				right: 0;
+				bottom: 0;
+				padding: 100px;
+				background-color: rgba(0,0,0,.5);
+				backdrop-filter: blur(5px);
+				display: none;
+			}
+		</style>
+	</head>
+	<body id="body">
+	    <div id="container" style="color: black;"></div>
+    	<div id="loading" class="fullwrapper" style="display: table; width: 100%; height: 100%;">
+    		<div style="display: table-cell; vertical-align: middle; text-align: center; color: white; font-size: 30px; padding: 50px;">
+    			<!--loadingtext--><p>Please Wait...</p><!--loadingtext-end-->
+    		</div>
+    	</div>
+		
+		<div id="tmp">
+			<div style="width: 100%; height: 100%; overflow: auto; box-sizing: border-box; position: relative;" id="tmpcontent"></div>
+			<div style="position: absolute; top: 0; right: 0; padding: 10px; color: red; font-size: 20px; z-index: 10;" onclick="hideTemp()"><i class="fa fa-times"></i></div>
+		</div>
+
+    	<script>
+			
+            var container = document.querySelector( '#container' );
+			/*panolens*/
+            var viewer = new PANOLENS.Viewer( { container: container , controlBar: false,  output: 'console' , autoHideInfospot: false, } );
+			/*panolens-end*/
+			
+			viewer.addUpdateCallback(function(){});
+			
+			/*panoramas*/
 var Step_1 = new PANOLENS.ImagePanorama( "panoramas/Step_1.jpg" );
-						Step_1.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_1.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_1.addEventListener('click', function(e){
-						});
+						Step_1.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_1.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_1.addEventListener('click', function(e){
+						});
 
 var infospotStep_10 = new PANOLENS.Infospot( 512, hotspotIcons[11].data, true );
-							infospotStep_10.position.set( 4883.60, -1049.81, 30.60 );
-							Step_1.add(infospotStep_10);
+							infospotStep_10.position.set( 4883.60, -1049.81, 30.60 );
+							Step_1.add(infospotStep_10);
 infospotStep_10.addEventListener('click', function(){
 viewer.setPanorama( Step_2 );
 });
 var infospotStep_11 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_11.position.set( 4661.95, -821.75, 1594.76 );
-							Step_1.add(infospotStep_11);
+							infospotStep_11.position.set( 4661.95, -821.75, 1594.76 );
+							Step_1.add(infospotStep_11);
 infospotStep_11.addEventListener('click', function(){
 window.open( 'https://goo.gl/maps/6TZwYZGPn8TgGjap7', '_blank');
 });
 var infospotStep_12 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_12.position.set( 4795.73, -818.76, 1128.52 );
-							Step_1.add(infospotStep_12);
+							infospotStep_12.position.set( 4795.73, -818.76, 1128.52 );
+							Step_1.add(infospotStep_12);
 infospotStep_12.addEventListener('click', function(){
 window.open( 'https://drive.google.com/file/d/1UiKxnH-xwfgL-JnI301QvJfuCCPYBfQx/view?usp=sharing', '_blank');
 });
 viewer.add( Step_1 );
 var Step_2 = new PANOLENS.ImagePanorama( "panoramas/Step_2.jpg" );
-						Step_2.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_2.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_2.addEventListener('click', function(e){
-						});
+						Step_2.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_2.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_2.addEventListener('click', function(e){
+						});
 
 var infospotStep_20 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
-							infospotStep_20.position.set( 4553.69, -1004.58, -1775.44 );
-							Step_2.add(infospotStep_20);
+							infospotStep_20.position.set( 4553.69, -1004.58, -1775.44 );
+							Step_2.add(infospotStep_20);
 infospotStep_20.addEventListener('click', function(){
 viewer.setPanorama( Step_3 );
 });
 var infospotStep_21 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
-							infospotStep_21.position.set( -4552.96, -257.96, -2040.37 );
-							Step_2.add(infospotStep_21);
+							infospotStep_21.position.set( -4552.96, -257.96, -2040.37 );
+							Step_2.add(infospotStep_21);
 infospotStep_21.addEventListener('click', function(){
 });
 var infospotStep_22 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_22.position.set( -1712.80, -280.43, 4679.12 );
-							Step_2.add(infospotStep_22);
+							infospotStep_22.position.set( -1712.80, -280.43, 4679.12 );
+							Step_2.add(infospotStep_22);
 infospotStep_22.addEventListener('click', function(){
 viewer.setPanorama( Step_1 );
 });
 viewer.add( Step_2 );
 var Step_3 = new PANOLENS.ImagePanorama( "panoramas/Step_3.jpg" );
-						Step_3.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_3.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_3.addEventListener('click', function(e){
-						});
+						Step_3.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_3.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_3.addEventListener('click', function(e){
+						});
 
 var infospotStep_30 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_30.position.set( 1479.11, -281.32, -4761.53 );
-							Step_3.add(infospotStep_30);
+							infospotStep_30.position.set( 1479.11, -281.32, -4761.53 );
+							Step_3.add(infospotStep_30);
 infospotStep_30.addEventListener('click', function(){
 viewer.setPanorama( Step_2 );
 });
 var infospotStep_31 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_31.position.set( 4906.76, -92.94, 915.06 );
-							Step_3.add(infospotStep_31);
+							infospotStep_31.position.set( 4906.76, -92.94, 915.06 );
+							Step_3.add(infospotStep_31);
 infospotStep_31.addEventListener('click', function(){
 viewer.setPanorama( Step_4 );
 });
 viewer.add( Step_3 );
 var Step_4 = new PANOLENS.ImagePanorama( "panoramas/Step_4.jpg" );
-						Step_4.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_4.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_4.addEventListener('click', function(e){
-						});
+						Step_4.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_4.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_4.addEventListener('click', function(e){
+						});
 
 var infospotStep_40 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_40.position.set( 4781.60, -467.42, 1353.08 );
-							Step_4.add(infospotStep_40);
+							infospotStep_40.position.set( 4781.60, -467.42, 1353.08 );
+							Step_4.add(infospotStep_40);
 infospotStep_40.addEventListener('click', function(){
 viewer.setPanorama( Step_3 );
 });
 var infospotStep_41 = new PANOLENS.Infospot( 512, hotspotIcons[12].data, true );
-							infospotStep_41.position.set( -4816.53, -462.31, -1225.06 );
-							Step_4.add(infospotStep_41);
+							infospotStep_41.position.set( -4816.53, -462.31, -1225.06 );
+							Step_4.add(infospotStep_41);
 infospotStep_41.addEventListener('click', function(){
 viewer.setPanorama( Step_5 );
 });
 viewer.add( Step_4 );
 var Step_5 = new PANOLENS.ImagePanorama( "panoramas/Step_5.jpg" );
-						Step_5.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_5.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_5.addEventListener('click', function(e){
-						});
+						Step_5.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_5.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_5.addEventListener('click', function(e){
+						});
 
 var infospotStep_50 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_50.position.set( 972.44, 613.96, -4859.26 );
-							Step_5.add(infospotStep_50);
+							infospotStep_50.position.set( 972.44, 613.96, -4859.26 );
+							Step_5.add(infospotStep_50);
 infospotStep_50.addEventListener('click', function(){
 showMedia(4, 'pdf/FasilitasdiPantaiTambakRejo.pdf');
 });
 var infospotStep_51 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_51.position.set( -4848.16, -963.95, 684.57 );
-							Step_5.add(infospotStep_51);
+							infospotStep_51.position.set( -4848.16, -963.95, 684.57 );
+							Step_5.add(infospotStep_51);
 infospotStep_51.addEventListener('click', function(){
 viewer.setPanorama( Step_4 );
 });
 var infospotStep_52 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_52.position.set( 4983.23, -52.02, 280.93 );
-							Step_5.add(infospotStep_52);
+							infospotStep_52.position.set( 4983.23, -52.02, 280.93 );
+							Step_5.add(infospotStep_52);
 infospotStep_52.addEventListener('click', function(){
 viewer.setPanorama( Step_6 );
 });
 viewer.add( Step_5 );
 var Step_6 = new PANOLENS.ImagePanorama( "panoramas/Step_6.jpg" );
-						Step_6.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_6.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_6.addEventListener('click', function(e){
-						});
+						Step_6.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_6.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_6.addEventListener('click', function(e){
+						});
 
 var infospotStep_60 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_60.position.set( -2545.93, -842.30, 4212.76 );
-							Step_6.add(infospotStep_60);
+							infospotStep_60.position.set( -2545.93, -842.30, 4212.76 );
+							Step_6.add(infospotStep_60);
 infospotStep_60.addEventListener('click', function(){
 window.open( 'https://drive.google.com/file/d/1FTu8QvdEHunGSYzrBtmf_wpCGr483Q8f/view?usp=sharing', '_blank');
 });
 var infospotStep_61 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_61.position.set( -4732.92, -1545.50, -423.77 );
-							Step_6.add(infospotStep_61);
+							infospotStep_61.position.set( -4732.92, -1545.50, -423.77 );
+							Step_6.add(infospotStep_61);
 infospotStep_61.addEventListener('click', function(){
 viewer.setPanorama( Step_5 );
 });
 var infospotStep_62 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_62.position.set( 776.00, -312.90, -4920.05 );
-							Step_6.add(infospotStep_62);
+							infospotStep_62.position.set( 776.00, -312.90, -4920.05 );
+							Step_6.add(infospotStep_62);
 infospotStep_62.addEventListener('click', function(){
 viewer.setPanorama( Step_11 );
 });
 var infospotStep_63 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_63.position.set( -717.86, -1523.87, 4700.31 );
-							Step_6.add(infospotStep_63);
+							infospotStep_63.position.set( -717.86, -1523.87, 4700.31 );
+							Step_6.add(infospotStep_63);
 infospotStep_63.addEventListener('click', function(){
 viewer.setPanorama( Step_7 );
 });
 viewer.add( Step_6 );
 var Step_7 = new PANOLENS.ImagePanorama( "panoramas/Step_7.jpg" );
-						Step_7.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_7.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_7.addEventListener('click', function(e){
-						});
+						Step_7.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_7.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_7.addEventListener('click', function(e){
+						});
 
 var infospotStep_70 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_70.position.set( -4546.04, -1743.61, 1099.16 );
-							Step_7.add(infospotStep_70);
+							infospotStep_70.position.set( -4546.04, -1743.61, 1099.16 );
+							Step_7.add(infospotStep_70);
 infospotStep_70.addEventListener('click', function(){
 viewer.setPanorama( Step_6 );
 });
 var infospotStep_71 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_71.position.set( 4698.83, -336.34, -1655.33 );
-							Step_7.add(infospotStep_71);
+							infospotStep_71.position.set( 4698.83, -336.34, -1655.33 );
+							Step_7.add(infospotStep_71);
 infospotStep_71.addEventListener('click', function(){
 viewer.setPanorama( Step_8 );
 });
 viewer.add( Step_7 );
 var Step_8 = new PANOLENS.ImagePanorama( "panoramas/Step_8.jpg" );
-						Step_8.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_8.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_8.addEventListener('click', function(e){
-						});
+						Step_8.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_8.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_8.addEventListener('click', function(e){
+						});
 
 var infospotStep_80 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_80.position.set( 4773.06, 943.86, -1117.12 );
-							Step_8.add(infospotStep_80);
+							infospotStep_80.position.set( 4773.06, 943.86, -1117.12 );
+							Step_8.add(infospotStep_80);
 infospotStep_80.addEventListener('click', function(){
 window.open( 'https://disparbudpora.blitarkab.go.id/ritual-adat-larung-sesaji-pantai-tambakrejo-kabupaten-blitar/', '_blank');
 });
 var infospotStep_81 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_81.position.set( -4556.32, -1917.63, 708.92 );
-							Step_8.add(infospotStep_81);
+							infospotStep_81.position.set( -4556.32, -1917.63, 708.92 );
+							Step_8.add(infospotStep_81);
 infospotStep_81.addEventListener('click', function(){
 viewer.setPanorama( Step_7 );
 });
 var infospotStep_82 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_82.position.set( 4965.39, -329.36, -413.45 );
-							Step_8.add(infospotStep_82);
+							infospotStep_82.position.set( 4965.39, -329.36, -413.45 );
+							Step_8.add(infospotStep_82);
 infospotStep_82.addEventListener('click', function(){
 viewer.setPanorama( Step_9 );
 });
 viewer.add( Step_8 );
 var Step_9 = new PANOLENS.ImagePanorama( "panoramas/Step_9.jpg" );
-						Step_9.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_9.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_9.addEventListener('click', function(e){
-						});
+						Step_9.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_9.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_9.addEventListener('click', function(e){
+						});
 
 var infospotStep_90 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_90.position.set( 995.18, -194.89, -4890.02 );
-							Step_9.add(infospotStep_90);
+							infospotStep_90.position.set( 995.18, -194.89, -4890.02 );
+							Step_9.add(infospotStep_90);
 infospotStep_90.addEventListener('click', function(){
 showMedia(4, 'pdf/PERDA-NO.-5-TAHUN-2013.pdf');
 });
 var infospotStep_91 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_91.position.set( -1149.99, -406.61, -4843.46 );
-							Step_9.add(infospotStep_91);
+							infospotStep_91.position.set( -1149.99, -406.61, -4843.46 );
+							Step_9.add(infospotStep_91);
 infospotStep_91.addEventListener('click', function(){
 viewer.setPanorama( Step_10 );
 });
 var infospotStep_92 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_92.position.set( 876.86, -956.91, 4819.12 );
-							Step_9.add(infospotStep_92);
+							infospotStep_92.position.set( 876.86, -956.91, 4819.12 );
+							Step_9.add(infospotStep_92);
 infospotStep_92.addEventListener('click', function(){
 viewer.setPanorama( Step_8 );
 });
 viewer.add( Step_9 );
 var Step_10 = new PANOLENS.ImagePanorama( "panoramas/Step_10.jpg" );
-						Step_10.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_10.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_10.addEventListener('click', function(e){
-						});
+						Step_10.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_10.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_10.addEventListener('click', function(e){
+						});
 
 var infospotStep_100 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_100.position.set( -4888.55, 637.11, -769.97 );
-							Step_10.add(infospotStep_100);
+							infospotStep_100.position.set( -4888.55, 637.11, -769.97 );
+							Step_10.add(infospotStep_100);
 infospotStep_100.addEventListener('click', function(){
 showMedia(4, 'pdf/Artikel_DampakPerkembanganPariwisataPantaiTambakRejo.pdf');
 });
 var infospotStep_101 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_101.position.set( 4768.85, -1450.50, 250.04 );
-							Step_10.add(infospotStep_101);
+							infospotStep_101.position.set( 4768.85, -1450.50, 250.04 );
+							Step_10.add(infospotStep_101);
 infospotStep_101.addEventListener('click', function(){
 viewer.setPanorama( Step_9 );
 });
 viewer.add( Step_10 );
 var Step_11 = new PANOLENS.ImagePanorama( "panoramas/Step_11.jpg" );
-						Step_11.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_11.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_11.addEventListener('click', function(e){
-						});
+						Step_11.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_11.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_11.addEventListener('click', function(e){
+						});
 
 var infospotStep_110 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_110.position.set( 4035.09, 236.62, -2936.52 );
-							Step_11.add(infospotStep_110);
+							infospotStep_110.position.set( 4035.09, 236.62, -2936.52 );
+							Step_11.add(infospotStep_110);
 infospotStep_110.addEventListener('click', function(){
 viewer.setPanorama( Step_6 );
 });
 var infospotStep_111 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_111.position.set( -3204.64, -1023.58, 3689.11 );
-							Step_11.add(infospotStep_111);
+							infospotStep_111.position.set( -3204.64, -1023.58, 3689.11 );
+							Step_11.add(infospotStep_111);
 infospotStep_111.addEventListener('click', function(){
 showMedia(4, 'pdf/ProspekdanTantanganPengembanganPantaiDitinjaudariPendekatan.pdf');
 });
 var infospotStep_112 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_112.position.set( -4261.49, -1821.25, 1865.63 );
-							Step_11.add(infospotStep_112);
+							infospotStep_112.position.set( -4261.49, -1821.25, 1865.63 );
+							Step_11.add(infospotStep_112);
 infospotStep_112.addEventListener('click', function(){
 viewer.setPanorama( Step_12 );
 });
 viewer.add( Step_11 );
 var Step_12 = new PANOLENS.ImagePanorama( "panoramas/Step_12.jpg" );
-						Step_12.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_12.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_12.addEventListener('click', function(e){
-						});
+						Step_12.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_12.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_12.addEventListener('click', function(e){
+						});
 
 var infospotStep_120 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_120.position.set( 1199.82, -226.30, 4838.60 );
-							Step_12.add(infospotStep_120);
+							infospotStep_120.position.set( 1199.82, -226.30, 4838.60 );
+							Step_12.add(infospotStep_120);
 infospotStep_120.addEventListener('click', function(){
 showMedia(4, 'pdf/PerilakuPerusakanLingkunganMasyarakatPesisirdalamPerspektifIslam.pdf');
 });
 var infospotStep_121 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_121.position.set( -4782.60, -613.71, 1282.57 );
-							Step_12.add(infospotStep_121);
+							infospotStep_121.position.set( -4782.60, -613.71, 1282.57 );
+							Step_12.add(infospotStep_121);
 infospotStep_121.addEventListener('click', function(){
 window.open( 'https://drive.google.com/file/d/1V-_SpY3hSfMieYWSO2N-B7lSKJvgulWs/view?usp=sharing', '_blank');
 });
 var infospotStep_122 = new PANOLENS.Infospot( 512, hotspotIcons[12].data, true );
-							infospotStep_122.position.set( -3261.62, -79.89, 3779.74 );
-							Step_12.add(infospotStep_122);
+							infospotStep_122.position.set( -3261.62, -79.89, 3779.74 );
+							Step_12.add(infospotStep_122);
 infospotStep_122.addEventListener('click', function(){
 viewer.setPanorama( Step_13MHVc7 );
 });
 var infospotStep_123 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_123.position.set( 4146.79, -388.22, -2754.35 );
-							Step_12.add(infospotStep_123);
+							infospotStep_123.position.set( 4146.79, -388.22, -2754.35 );
+							Step_12.add(infospotStep_123);
 infospotStep_123.addEventListener('click', function(){
 viewer.setPanorama( Step_11 );
 });
 viewer.add( Step_12 );
 var Step_13MHVc7 = new PANOLENS.ImagePanorama( "panoramas/Step_13MHVc7.jpg" );
-						Step_13MHVc7.addEventListener('progress', function(e){
-							$("#loading").show();
-						});
-						Step_13MHVc7.addEventListener('load', function(e){
-							$("#loading").fadeOut();
-						});
-						Step_13MHVc7.addEventListener('click', function(e){
-						});
+						Step_13MHVc7.addEventListener('progress', function(e){
+							$("#loading").show();
+						});
+						Step_13MHVc7.addEventListener('load', function(e){
+							$("#loading").fadeOut();
+						});
+						Step_13MHVc7.addEventListener('click', function(e){
+						});
 
 var infospotStep_13MHVc70 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
-							infospotStep_13MHVc70.position.set( 1595.41, -1397.81, -4518.63 );
-							Step_13MHVc7.add(infospotStep_13MHVc70);
+							infospotStep_13MHVc70.position.set( 1595.41, -1397.81, -4518.63 );
+							Step_13MHVc7.add(infospotStep_13MHVc70);
 infospotStep_13MHVc70.addEventListener('click', function(){
 viewer.setPanorama( Step_12 );
 });
 var infospotStep_13MHVc71 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_13MHVc71.position.set( -4775.00, 196.16, 1441.77 );
-							Step_13MHVc7.add(infospotStep_13MHVc71);
+							infospotStep_13MHVc71.position.set( -4775.00, 196.16, 1441.77 );
+							Step_13MHVc7.add(infospotStep_13MHVc71);
 infospotStep_13MHVc71.addEventListener('click', function(){
 window.open( 'https://drive.google.com/file/d/1ap0RjA7kj8FbnH961JiD4mDO5k2tWXgH/view?usp=sharing', '_blank');
 });
 var infospotStep_13MHVc72 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_13MHVc72.position.set( -3728.84, 117.48, 3322.13 );
-							Step_13MHVc7.add(infospotStep_13MHVc72);
+							infospotStep_13MHVc72.position.set( -3728.84, 117.48, 3322.13 );
+							Step_13MHVc7.add(infospotStep_13MHVc72);
 infospotStep_13MHVc72.addEventListener('click', function(){
 window.open( 'https://www.proprofs.com/quiz-school/ugc/story.php?title=market-research-quiz-template_5308ou', '_blank');
 });
 var infospotStep_13MHVc73 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
-							infospotStep_13MHVc73.position.set( -2597.75, 66.94, 4263.52 );
-							Step_13MHVc7.add(infospotStep_13MHVc73);
+							infospotStep_13MHVc73.position.set( -2597.75, 66.94, 4263.52 );
+							Step_13MHVc7.add(infospotStep_13MHVc73);
 infospotStep_13MHVc73.addEventListener('click', function(){
 viewer.setPanorama( Step_1 );
 });
@@ -481,39 +482,39 @@
 $(document).ready(function(){ viewer.setPanorama( Step_1 ); });
 
 /*panoramas-end*/
-            
-			
-			function hideTemp(){
-				$("#tmp").fadeOut();
-				setTimeout(function(){
-					$("#tmpcontent").html("");
-				},1000);
-			}
-			
-			function showMedia(type, content){
-				switch(type){
-					case 1 :
-						//Image
-						$("#tmpcontent").html("<img src='"+content+"' style='width: 100%;'>");
-						$("#tmp").fadeIn();
-						break;
-					case 2 :
-						//Video
-						$("#tmpcontent").html("<video id='webvideo' controls autoplay style='width: 100%; height: 100%;'><source src='" +content+ "' type='video/mp4'> Your browser does not support the video tag. </video>");
-						$("#tmp").fadeIn();
-						break;
-					case 3 :
-						//Audio
-						$("#tmpcontent").html("<audio controls style='width: 100%;'><source src='"+content+"' type='audio/ogg'>Your browser does not support the audio tag.</audio>");
-						$("#tmp").fadeIn();
-						break;
-					case 4 :
-						//PDF
-						$("#tmpcontent").html("<iframe src='pdfjs/web/viewer.html?file=../../"+content+"' style='width: 100%; height: 100%;'></iframe>");
-						$("#tmp").fadeIn();
-						break;
-				}
-			}
-        </script>
-	</body>
-</html>
+            
+			
+			function hideTemp(){
+				$("#tmp").fadeOut();
+				setTimeout(function(){
+					$("#tmpcontent").html("");
+				},1000);
+			}
+			
+			function showMedia(type, content){
+				switch(type){
+					case 1 :
+						//Image
+						$("#tmpcontent").html("<img src='"+content+"' style='width: 100%;'>");
+						$("#tmp").fadeIn();
+						break;
+					case 2 :
+						//Video
+						$("#tmpcontent").html("<video id='webvideo' controls autoplay style='width: 100%; height: 100%;'><source src='" +content+ "' type='video/mp4'> Your browser does not support the video tag. </video>");
+						$("#tmp").fadeIn();
+						break;
+					case 3 :
+						//Audio
+						$("#tmpcontent").html("<audio controls style='width: 100%;'><source src='"+content+"' type='audio/ogg'>Your browser does not support the audio tag.</audio>");
+						$("#tmp").fadeIn();
+						break;
+					case 4 :
+						//PDF
+						$("#tmpcontent").html("<iframe src='pdfjs/web/viewer.html?file=../../"+content+"' style='width: 100%; height: 100%;'></iframe>");
+						$("#tmp").fadeIn();
+						break;
+				}
+			}
+        </script>
+	</body>
+</html>
