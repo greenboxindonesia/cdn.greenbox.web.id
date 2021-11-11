@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="17mm"
+   height="17mm"
+   viewBox="0 0 17 17"
+   version="1.1"
+   id="svg3367"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="logo-aank-solid-color.svg">
+  <defs
+     id="defs3361" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="-258.97328"
+     inkscape:cy="-5.3470085"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g3334"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1015"
+     inkscape:window-x="0"
+     inkscape:window-y="28"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3364">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-280)">
+    <g
+       id="g3334"
+       transform="translate(-188.58201,68.997273)">
+      <g
+         id="g818"
+         inkscape:export-xdpi="127"
+         inkscape:export-ydpi="127">
+        <rect
+           ry="0"
+           y="211.0144"
+           x="188.58202"
+           height="16.984142"
+           width="17.005024"
+           id="rect814"
+           style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26060843;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke" />
+        <path
+           inkscape:export-ydpi="127.90833"
+           inkscape:export-xdpi="127.90833"
+           style="opacity:1;fill:#008000;fill-opacity:1;stroke:none;stroke-width:0.15663078;stroke-miterlimit:4;stroke-dasharray:none"
+           d="m 197.17603,213.30299 a 6.2478017,6.2478017 0 0 0 -6.24789,6.2479 6.2478017,6.2478017 0 0 0 0.84754,3.12658 l 2.32303,-4.02772 2.27357,3.88013 -1.63678,2.77187 a 6.2478017,6.2478017 0 0 0 2.44053,0.49685 6.2478017,6.2478017 0 0 0 4.04292,-1.49358 l -2.14033,0.005 -4.11227,-7.15898 2.24208,-3.84758 a 6.2478017,6.2478017 0 0 0 -0.0323,-8.8e-4 z m 0.0528,8.8e-4 5.37861,9.3243 a 6.2478017,6.2478017 0 0 0 0.81622,-3.07912 6.2478017,6.2478017 0 0 0 -6.19483,-6.24518 z"
+           id="path1741"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+  </g>
+</svg>

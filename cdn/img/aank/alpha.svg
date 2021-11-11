@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="125"
+   height="125"
+   viewBox="0 0 33.072915 33.072918"
+   version="1.1"
+   id="svg1031"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="icon-logo-albert-125px-color.svg">
+  <defs
+     id="defs1025" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="27.435987"
+     inkscape:cy="42.449743"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1560"
+     inkscape:window-height="877"
+     inkscape:window-x="317"
+     inkscape:window-y="133"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata1028">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-263.92707)">
+    <path
+       style="opacity:1;fill:#008000;fill-opacity:1;stroke:none;stroke-width:0.41133383;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 16.573768,264.00124 A 16.407578,16.407578 0 0 0 0.16630065,280.40929 16.407578,16.407578 0 0 0 2.39207,288.62002 l 6.1004512,-10.57765 5.9709658,10.19036 -4.298722,7.27925 a 16.407578,16.407578 0 0 0 6.409003,1.30478 16.407578,16.407578 0 0 0 10.617317,-3.92252 l -5.621002,0.0164 -10.799298,-18.80063 5.888141,-10.10463 a 16.407578,16.407578 0 0 0 -0.08516,-0.005 z m 0.138819,0.007 14.125702,24.48695 a 16.407578,16.407578 0 0 0 2.142946,-8.08591 16.407578,16.407578 0 0 0 -16.268648,-16.40104 z"
+       id="circle10072"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
