@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="128mm"
+   height="128mm"
+   viewBox="0 0 128 128"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="favicon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.938593"
+     inkscape:cx="153.42113"
+     inkscape:cy="305.77684"
+     inkscape:window-width="1920"
+     inkscape:window-height="1015"
+     inkscape:window-x="0"
+     inkscape:window-y="28"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g6031"
+       transform="matrix(2.1898907,0,0,2.1898907,-31.634078,-193.1558)"
+       style="fill:#1a1a1a">
+      <path
+         style="fill:#1a1a1a;stroke-width:0.352974"
+         d="m 16.583956,108.43283 c 16.505721,6.52784 44.806977,23.19299 42.498143,9.61393 L 47.976378,96.159915 70.494785,96.189401 59.216539,118.04536 c 3.9479,7.65559 8.129315,15.76668 11.362575,22.0382 H 47.698575 L 36.428048,120.69482 36.25109,140.08354 H 16.583832 c 2.19e-4,-9.43689 1.24e-4,-3.29315 1.24e-4,-31.65071 z"
+         id="path6027"
+         sodipodi:nodetypes="ccccccccccc" />
+      <circle
+         style="fill:#1a1a1a;stroke-width:0.0131211;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+         id="circle6029"
+         cx="37.109283"
+         cy="104.59227"
+         r="8.5627022" />
+    </g>
+  </g>
+</svg>

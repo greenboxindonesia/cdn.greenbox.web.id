@@ -9,23 +9,76 @@
       <link rel='stylesheet' id='roboto-subset.css-css'  href='https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5' type='text/css' media='all' />
 
    </head>
-<style>
-.divider:after,
-.divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
-}
-.h-custom {
-height: calc(100% - 73px);
-}
-@media (max-width: 450px) {
-.h-custom {
-height: 100%;
-}
-}
-</style>
+   <style>
+    .divider:after,
+    .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+    }
+    .h-custom {
+    height: calc(100% - 73px);
+    }
+    .form-outline .form-control {
+        min-height: auto;
+        padding: 0.33em 0.75em;
+        border: solid 1px #ddd;
+        background: transparent;
+        transition: all .2s linear;
+    }
+    .text-white.mb-3.mb-md-0 a {
+        color: white;
+    }
+    .text-white.mb-3.mb-md-0 a:hover {
+        color: greenyellow;
+    }
+    .tagline-site {
+       font-size:22px;
+    }
+    .logo-image-login img {
+       width: 40vh;
+       padding-top: 0;
+       padding-bottom: 15px;
+    }
+    .lead {
+        font-size: 1rem;
+        font-weight: 300;
+        text-align: center;
+    }
+    .logo-pawon {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+    .fw-bold {
+        font-weight: 700!important;
+        text-transform: uppercase;
+    }
+    .btn-primary {
+        background-color: #3b71ca;
+        color: #fff;
+        box-shadow: 0 4px 9px -4px #3b71ca;
+        font-size: 17px;
+    }
+    .form-outline .form-control:focus~.form-label {
+        color: #3b71ca;
+        background: white;
+        padding: 0 10px;
+        margin: 10px;
+    }
+    @media (max-width: 450px) {
+      .h-custom {
+      height: 135%;
+      }
+    }
+    @media (min-width: 992px) {
+       .justify-content-lg-start {
+        justify-content: center!important;
+       }
+    }
+    </style>
 <body>
   <section class="vh-100">
     <div class="container-fluid h-custom">
