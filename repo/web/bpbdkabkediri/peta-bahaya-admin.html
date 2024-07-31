@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Peta Bahaya</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
+<!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 60px; bottom: 0; width: 100%; }
+p {font-size: 0.85em; margin:5px;}
+</style>
+</head>
+<body>
+	<style>
+		#content {
+        width: 600px;
+		  }
+		  #container {
+			width: 600px;
+			height: 400px;
+			margin: 20px 0;
+			display: grid;
+		  }
+		
+		#menu {
+		background: #fff;
+		position: absolute;
+		z-index: -1;
+		top: 70px;
+		right: 10px;
+		border-radius: 1px;
+		width: 180px;
+		border: 1px solid rgba(0, 0, 0, 0.5);
+		font-family: 'Open Sans', sans-serif;
+		}
+		 
+		#menu a {
+		font-size: 13px;
+		color: #404040;
+		display: block;
+		margin: 0;
+		padding: 3px;
+		text-decoration: none;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+		text-align: center;
+		}
+		 
+		#menu a:last-child {
+		border: none;
+		}
+		 
+		#menu a:hover {
+		background-color: #f8f8f8;
+		color: #404040;
+		}
+		 
+		#menu a.active {
+		background-color: #86e168;
+		color: #ffffff;
+		}
+		 
+		#menu a.active:hover {
+		background: #6cc44f;
+		}
+		
+		.mapboxgl-popup {
+		max-width: 400px;
+		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		}
+		
+		.map-overlay {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.8);
+		margin-bottom: 30px;
+        margin-right: 10px;
+        font-family: Arial, sans-serif;
+		display: inline-block;
+		overflow-y: auto;
+        border-radius: 3px;
+		}
+
+		.calculation-box {
+		height: 75px;
+		width: 150px;
+		position: absolute;
+		bottom: 70px;
+		left: 12px;
+		background-color: rgba(255, 255, 255, 0.9);
+		padding: 15px;
+		text-align: center;
+		}
+		p {
+		font-family: 'Open Sans';
+		margin: 0;
+		font-size: 14px;
+		}
+	</style>
+	<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
+	<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.css" type="text/css">
+	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    
+      <a class="navbar-brand" href="#"><b>Peta KRB Kabupaten Kediri</b></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+	  <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="peta-kerawanan.html">Kerawanan
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="peta-bahaya.html">Bahaya</a>
+          </li>
+		  <li class="nav-item active">
+            <a class="nav-link" href="peta-bahaya-admin.html">Bahaya (Administrasi)</a>
+			<span class="sr-only">(current)</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="peta-indeks-kerentanan.html">Indeks Kerentanan</a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="peta-kerentanan.html">Kelas Kerentanan</a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="peta-kapasitas.html">Kapasitas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="peta-indeks-risiko.html">Indeks Risiko</a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="peta-risiko.html">Kelas Risiko</a>
+          </li>
+          </li>
+        </ul>
+      </div>
+	
+	</nav>
+	
+	<nav id="menu"></nav>
+	<div id="map" style="z-index:-2"></div>
+	<div class="map-overlay" id="features">
+		<p>Indeks bahaya</p>
+		<img src="assets/images/Indeks.PNG" width="300">
+	</div>
+	<div class="calculation-box">
+		<p>Jarak</p>
+		<div id="calculated-length"></div>
+	</div>
+		
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoicGljYWNwIiwiYSI6ImNqZzdrb20zYzNnY2QycW82c2llb2VuZmwifQ.aAoJCI6KpeqQwDlovhb1jQ';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        zoom: 9.8,
+        center: [ 112.08609,-7.80919],
+        style: 'mapbox://styles/mapbox/satellite-v9'
+    });
+	
+	const zoomThreshold = 10.2;
+	
+    map.on('load', () => {
+		<!--Mapbox DEM untuk basemap 3D-->
+		map.addSource('mapbox-dem', {
+			'type': 'raster-dem',
+			'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+			'tileSize': 512,
+			'maxzoom': 14
+		});
+		// add the DEM source as a terrain layer with exaggerated height
+		map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+		// add a sky layer that will show when the map is highly pitched
+		map.addLayer({
+			'id': 'sky',
+			'type': 'sky',
+			'paint': {
+			'sky-type': 'atmosphere',
+			'sky-atmosphere-sun': [0.0, 0.0],
+			'sky-atmosphere-sun-intensity': 15
+			}
+		});
+	
+		<!--Batas Admin-->
+		map.addSource('batas-adm', {
+            'type': 'geojson',
+            'data': 'assets/layer/kediri-kec.geojson',
+        });		
+        map.addLayer({
+            'id': 'batas kecamatan',
+			'maxzoom': zoomThreshold,
+            'type': 'line',
+            'source': 'batas-adm',
+			'layout': { 'visibility': 'visible' },
+			'paint': {
+				'line-color': '#f9e79f',
+				'line-width': 2,
+				'line-dasharray': [2, 2] //garis titik-titik
+			}
+        });
+		map.addLayer({
+			'id': 'label',
+			'type': 'symbol',
+			'source': 'batas-adm',
+			'layout': {
+			'text-field': ['get', 'KECAMATAN'],
+			'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+			'text-radial-offset': 0.5,
+			'text-justify': 'auto',
+			'text-size':12,
+			},
+			'paint':{'text-color':'white', 'text-halo-color':'orange', 'text-halo-width':0.5}		
+		});
+		
+		<!--Batas Desa-->
+		map.addSource('desa', {
+            'type': 'geojson',
+            'data': 'assets/layer/kediri-desa.geojson',
+        });
+		map.addLayer({
+            'id': 'desa_fill',
+			'minzoom': zoomThreshold,
+            'type': 'fill',
+            'source': 'desa',
+			'layout': { 'visibility': 'visible' },
+			'paint': {
+				'fill-color': '#ffffff',
+				'fill-opacity': 0.1,
+				'fill-outline-color': '#f0f0f0',
+			}
+        });
+				
+		<!--Bentuklahan-->
+		map.addSource('bentuklahan', {
+            'type': 'geojson',
+            'data': 'assets/layer/bentuklahan.geojson',
+        });
+        map.addLayer({
+            'id': 'Bentuklahan',
+            'type': 'fill',
+            'source': 'bentuklahan',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'bentuklahan',
+					type: 'categorical',
+						stops: [
+							['DataranAluvial', ' #16a085 '],
+							['LembahSungai', ' #2471a3 '],
+							['TanggulAlam', ' #aed6f1 '],
+							['DataranKaki', '  #f1948a '],
+							['LerengBawah', ' #e74c3c '],
+							['LerengTengah', ' #cb4335 '],
+							['LerengAtas', ' #a93226 '],
+							['Puncak', '#641e16 '],
+							['KerucutParasit', ' #d68910 '],
+							['Igir', ' #f1c40f '],
+							['Lembah', ' #ca6f1e '],
+						]
+				},
+				'fill-opacity': 0.75,
+				'fill-outline-color': '#f0f0f0',
+			}
+        });
+				
+		
+		<!--BAHAYA-->
+		map.addSource('bahaya', {
+            'type': 'geojson',
+            'data': 'assets/layer/bahaya.geojson',
+        });
+		// Gempa
+        map.addLayer({
+            'id': 'Bahaya Gempabumi',
+            'type': 'fill',
+            'source': 'bahaya',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'h_earthqua',
+					type: 'categorical',
+						stops: [
+							['T', '#dd2a12'],
+							['S', '#ffe20d'],
+							['R', '#7fe545'],
+							['X', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+			}
+        });
+		// Gunungapi
+        map.addLayer({
+            'id': 'Bahaya Gunungapi',
+            'type': 'fill',
+            'source': 'bahaya',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'h_eruption',
+					type: 'categorical',
+						stops: [
+							['T', '#dd2a12'],
+							['S', '#ffe20d'],
+							['R', '#7fe545'],
+							['X', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+			}
+        });
+		// Longsor
+        map.addLayer({
+            'id': 'Bahaya Tanah Longsor',
+            'type': 'fill',
+            'source': 'bahaya',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'h_landslid',
+					type: 'categorical',
+						stops: [
+							['T', '#dd2a12'],
+							['S', '#ffe20d'],
+							['R', '#7fe545'],
+							['X', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+			}
+        });
+		// Banjir
+        map.addLayer({
+            'id': 'Bahaya Banjir',
+            'type': 'fill',
+            'source': 'bahaya',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'h_flood',
+					type: 'categorical',
+						stops: [
+							['T', '#dd2a12'],
+							['S', '#ffe20d'],
+							['R', '#7fe545'],
+							['X', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+			}
+        });
+		// Banjir Bandang
+        map.addLayer({
+            'id': 'Bahaya Banjir Bandang',
+            'type': 'fill',
+            'source': 'bahaya',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'h_flash',
+					type: 'categorical',
+						stops: [
+							['T', '#dd2a12'],
+							['S', '#ffe20d'],
+							['R', '#7fe545'],
+							['X', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+			}
+        });
+		// Kekeringan
+        map.addLayer({
+            'id': 'Bahaya Kekeringan',
+            'type': 'fill',
+            'source': 'bahaya',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'h_drought',
+					type: 'categorical',
+						stops: [
+							['T', '#dd2a12'],
+							['S', '#ffe20d'],
+							['R', '#7fe545'],
+							['X', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+			}
+        });
+		// Karhutla
+        map.addLayer({
+            'id': 'Bahaya Karhutla',
+            'type': 'fill',
+            'source': 'bahaya',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'h_fire',
+					type: 'categorical',
+						stops: [
+							['T', '#dd2a12'],
+							['S', '#ffe20d'],
+							['R', '#7fe545'],
+							['X', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+			}
+        });
+		// Cuaca Ekstrem
+        map.addLayer({
+            'id': 'Bahaya Cuaca Ekstrem',
+            'type': 'fill',
+            'source': 'bahaya',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'kls_cueks',
+					type: 'categorical',
+						stops: [
+							['T', '#dd2a12'],
+							['S', '#ffe20d'],
+							['R', '#7fe545'],
+							['X', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+			}
+        });
+		// Multi Bahaya
+		map.addSource('multibahaya', {
+            'type': 'geojson',
+            'data': 'assets/layer/multi.geojson',
+        });
+		map.addLayer({
+            'id': 'Multi Bahaya',
+            'type': 'fill',
+            'source': 'multibahaya',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'multibhy',
+					type: 'categorical',
+						stops: [
+							['tinggi', '#dd2a12'],
+							['sedang', '#ffe20d'],
+							['rendah', '#7fe545'],
+						]
+				},
+				'fill-opacity': 0.75,
+			}
+        });
+		
+		
+		<!--batas desa, garis-->
+		map.addLayer({
+            'id': 'Batas Desa',
+			'minzoom': zoomThreshold,
+            'type': 'line',
+            'source': 'desa',
+			'layout': { 'visibility': 'visible' },
+			'paint': {
+				'line-color': '#f0f0f0',
+				'line-width': 2,
+				'line-dasharray': [1, 2] //garis titik-titik
+			}
+        });
+		map.addLayer({
+            'id': 'batas kecamatan - zoom',
+			'minzoom': zoomThreshold,
+            'type': 'line',
+            'source': 'batas-adm',
+			'layout': { 'visibility': 'visible' },
+			'paint': {
+				'line-color': '#f9e79f',
+				'line-width': 2,
+				'line-dasharray': [2, 2] //garis titik-titik
+			}
+        });
+		<!--Bandara-->
+		map.addSource('bandara', {
+            'type': 'geojson',
+            'data': 'assets/layer/bandara.geojson',
+        });
+		map.addLayer({
+			id: 'lokasibandara',
+			type: 'symbol',
+			source: 'bandara',
+			layout: {
+				'text-field': ['get', 'Bandara'],
+				'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+				'text-radial-offset': 0.5,
+				'text-justify': 'auto',
+				'text-size':10,
+				'icon-image': [
+				'match', ['get', 'Bandara'],
+				'Bandara', 'airport-15',
+				'marker-11',
+			]
+			},
+			paint:{'text-color':'white', 'text-halo-color':'#2044b6', 'text-halo-width':0.5}		
+		});
+
+	});
+	
+		<!--POPUP-->
+		//Popup Topografi
+		var popup = new mapboxgl.Popup({
+			closeButton: false,
+			closeOnClick: true
+			});
+		map.on('mousemove', 'Bentuklahan', function (e) {
+			popup
+			.setLngLat(e.lngLat)
+			.setHTML(e.features[0].properties.orde_6b)
+			.addTo(map);
+			});
+		// Change the cursor to a pointer when the mouse is over the places layer.
+			map.on('mouseenter', 'Bentuklahan', function () {
+			map.getCanvas().style.cursor = 'pointer';
+			});
+		// Change it back to a pointer (and close the popup) when it leaves.
+			map.on('mouseleave', 'Bentuklahan', function () {
+			map.getCanvas().style.cursor = '';
+			popup.remove();
+			});
+			
+		// Popup Desa
+		var popup = new mapboxgl.Popup({
+			closeButton: false,
+			closeOnClick: true
+			});
+		map.on('mousemove', 'desa_fill', function (e) {
+			popup
+			.setLngLat(e.lngLat)
+			.setHTML('DESA '+e.features[0].properties.DESA)
+			.addTo(map);
+			});
+		// Change the cursor to a pointer when the mouse is over the places layer.
+			map.on('mouseenter', 'desa_fill', function () {
+			map.getCanvas().style.cursor = 'pointer';
+			});
+		// Change it back to a pointer when it leaves.  (+menutup popup)
+			map.on('mouseleave', 'desa_fill', function () {
+			map.getCanvas().style.cursor = '';
+			popup.remove();
+			});
+		
+		// After the last frame rendered before the map enters an "idle" state.
+		map.on('idle', () => {
+		// If these layers were not added to the map, abort
+		if (!map.getLayer('Bentuklahan') ||  !map.getLayer('Bahaya Banjir') ) {
+		return;
+		}
+ 
+		// Enumerate ids of the layers.
+		const toggleableLayerIds = ['Bentuklahan','Bahaya Gempabumi','Bahaya Gunungapi','Bahaya Tanah Longsor','Bahaya Banjir','Bahaya Banjir Bandang','Bahaya Kekeringan','Bahaya Karhutla','Bahaya Cuaca Ekstrem','Multi Bahaya'];
+		 
+		// Set up the corresponding toggle button for each layer.
+		for (const id of toggleableLayerIds) {
+		// Skip layers that already have a button set up.
+		if (document.getElementById(id)) {
+		continue;
+		}
+		 
+		// Create a link.
+		const link = document.createElement('a');
+		link.id = id;
+		link.href = '#';
+		link.textContent = id;
+		link.className = ''; //defaultnya 'active'
+		 
+		// Show or hide layer when the toggle is clicked.
+		link.onclick = function (e) {
+		const clickedLayer = this.textContent;
+		e.preventDefault();
+		e.stopPropagation();
+		 
+		const visibility = map.getLayoutProperty(
+		clickedLayer,
+		'visibility'
+		);
+		 
+		// Toggle layer visibility by changing the layout object's visibility property.
+		if (visibility === 'visible') {
+		map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+		this.className = '';
+		} else {
+		this.className = 'active';
+		map.setLayoutProperty(
+		clickedLayer,
+		'visibility',
+		'visible'
+		);
+		}
+		};
+		 
+		const layers = document.getElementById('menu');
+		layers.appendChild(link);
+		}
+		});
+		
+		//skala
+		var scale = new mapboxgl.ScaleControl({
+		maxWidth: 250,
+		unit: 'imperial'
+		});
+		map.addControl(scale);
+		scale.setUnit('metric');
+		
+		//tombol kontrol
+		map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+		
+		//measurement
+		const draw = new MapboxDraw({
+			displayControlsDefault: false,
+			// Select which mapbox-gl-draw control buttons to add to the map.
+			controls: {
+			line_string:true,
+			trash: true
+			},
+		});
+		map.addControl(draw, 'top-left');
+		 
+		map.on('draw.create', updateLength);
+		map.on('draw.delete', updateLength);
+		map.on('draw.update', updateLength);
+		 
+		function updateLength(e) {
+		var data = draw.getAll();
+		var answer = document.getElementById('calculated-length');
+		if (data.features.length > 0) {
+			var length = turf.length(data);
+			// restrict to 2 decimal points
+			answer.innerHTML = '<p><strong>' + length + '</strong></p><p> meters</p>';
+		} else {
+			answer.innerHTML = '';
+			if (e.type !== 'draw.delete') alert("Use the draw tools to calculate a distance");
+		}
+		};
+</script>
+
+<!-- Bootstrap core JavaScript -->
+	  <script src="vendor/jquery/jquery.slim.min.js"></script>
+	  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

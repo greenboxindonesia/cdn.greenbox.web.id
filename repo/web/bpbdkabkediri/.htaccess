@@ -1,0 +1,4 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^bpbdkabkediri\.bumispasial\.com$
+RewriteRule ^/?$ "http\:\/\/bpbdkabkediri\.bumispasial\.com\/peta\-kerawanan\.html" [R=301,L]
