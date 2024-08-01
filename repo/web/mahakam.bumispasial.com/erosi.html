@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+       	<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="shortcut icon" href="logo/icon.png"></link>
+        
+		<title>DAS Mahakam</title>
+		
+		<!-- Leaflet CSS Library -->
+			<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+        <!--Link bootsrap-->
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<!-- Bootstrap CSS Library -->
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<!-- Fontawesome CSS Library -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+		<!-- Font Awesome CSS Library -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+		<link href="assets/css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+		
+		<!-- Bootstrap core CSS -->
+		  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		  <link href="assets/css/simple-sidebar.css" rel="stylesheet">
+		  
+		<!-- PETA -->
+		   <link rel="stylesheet" href="assets/leaflet.css">
+		   <script src="assets/leaflet-src.js"></script>
+		   <link rel="stylesheet" href="assets/screen.css">
+
+		   <script src="assets/js/leaflet.ajax.js"></script>
+			<!-- Leaflet CSS Library -->
+			  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+			<!-- munculkan mouse koordinat-->
+			  <link rel="stylesheet" href="assets/leaflet-mouseposition/L.Control.MousePosition.css">
+			<!-- munculkan navigasi pengukuran-->
+			  <link rel="stylesheet" href="assets/leaflet-measure/leaflet-measure.css">
+			<!-- Geolocation CSS Library -->
+			  <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css">
+			<!-- Font Awesome CSS Library -->
+			  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+			<!--Popup Sidebar-->
+			  <link rel="stylesheet" href="assets/leaflet-sidebar/L.Control.Sidebar.css"/>
+			  <script src="assets/leaflet-sidebar/L.Control.Sidebar.js"></script>
+			<!--ZoomHome-->
+			   <link rel="stylesheet" href="assets/leaflet-zoomhome/leaflet.zoomhome.css"/>
+			<!-- Include the loading control -->
+			   <link rel="stylesheet" href="assets/leaflet-control-loading/Control.Loading.css" />
+			   <script src="assets/leaflet-control-loading/Control.Loading.js"></script>
+			<!-- Bootstrap CSS Library -->
+			   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+			<script src="assets/leaflet.js"> </script>
+			<script src="https://unpkg.com/rbush@2.0.2/rbush.min.js"></script>
+			<script src="https://unpkg.com/labelgun@6.1.0/lib/labelgun.min.js"></script>
+			<script src="assets/js/labels.js"></script>
+		<!-- PETA -->
+		
+		<style>
+			body {
+			padding:0;
+			margin:0;
+			}
+			#map {
+			width:auto;
+			height:100%;
+			}
+			.info {
+				padding: 6px 8px;
+				font: 14px/16px;
+				background: white;
+				background: rgba(255,255,255,0.6);
+				box-shadow: 0 0 15px rgba(0,0,0,0.2);
+				border-radius: 5px;
+				}
+			.leaflet-popup-content {
+				width: 300px;
+				max-height: 300px;
+				overflow-y: scroll;
+				}
+			.styleLabel{
+				background: rgba(255, 255, 255, 0);
+				border-radius: 0px;
+				font-size: 10pt;
+				color: white;
+				background-color: transparent;
+				border: transparent;
+				box-shadow: none;
+				}
+			table, th, td 
+				{
+					margin:0px 5px;
+					padding:2px 4px;
+				}
+							.legend {
+				  padding: 6px 8px;
+				  font: 14px/16px Arial, Helvetica, sans-serif;
+				  background: rgba(255,255,255,0.8);
+				  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+				  border-radius: 5px;
+				}
+				.imglegend {
+				  opacity: 0.8;
+}
+			h6 {
+			    display: block;
+			    padding: 0.5rem 1rem;
+			    color: rgba(0, 0, 0, 0.75);
+			    text-decoration: none;
+			    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+				}
+	
+			.info {
+			  padding: 6px 8px;
+			  font: 14px/16px Arial, Helvetica, sans-serif;
+			  background: white;
+			  background: rgba(255,255,255,0.8);
+			  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+			  border-radius: 5px;
+			}
+			.info h2 {
+			  margin: 0 0 5px;
+			  color: #777;
+			}		
+
+			/* ============ desktop view ============ */
+				@media all and (min-width: 992px) {
+
+				.dropdown-menu li{
+			  	  position: relative;
+				}
+				.dropdown-menu .submenu{ 
+				  display: none;
+				  position: absolute;
+				  left:100%; top:-7px;
+				}
+				.dropdown-menu .submenu-left{ 
+				  right:100%; left:auto;
+				}
+
+				.dropdown-menu > li:hover{ background-color: #f1f1f1 }
+				.dropdown-menu > li:hover > .submenu{
+				  display: block;
+				 }
+				 
+				}	
+			/* ============ desktop view .end// ============ */
+
+			/* ============ small devices ============ */
+				@media (max-width: 991px) {
+
+				.dropdown-menu .dropdown-menu{
+				  margin-left:0.7rem; margin-right:0.7rem; margin-bottom: .5rem;
+				}
+
+			}	
+			/* ============ small devices .end// ============ */
+		</style>
+		
+    </head>
+	
+    <body class="sb-nav-fixed">
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+   
+    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
+ 
+    <script src="library/leaflet-mouseposition/L.Control.MousePosition.js"></script>
+
+    <script src="library/leaflet-measure/leaflet-measure.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+			<!--ZoomHome-->
+			<script src="assets/leaflet-zoomhome/leaflet.zoomhome.min.js"></script>
+            <!-- Navbar Brand-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+			<a class="navbar-brand ps-3" href="index.html"><img src="logo/mountain.png"alt="logo" width="auto" height="25"></img>
+			<b> Profil DAS Mahakam </b></a>
+            <!-- Sidebar Toggle-->
+                        			
+            <!-- Navbar-->
+            <!-- <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">   
+			<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Stasiun</a>    
+		    </ul>
+            </ul> -->
+			
+		  <ul class="navbar-nav  ms-auto me-0 me-md-3 my-2 my-md-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href=https://drive.google.com/drive/folders/1paPYNMwwUD6i33Yv3wHKNQpm7-KNcBi1?usp=sharing target=_blank >Analisis DPSIR</a>
+            </li>
+			<!-- <li class="nav-item">
+              <a class="nav-link active" href="intensif_2019.html">Peta <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tentang</a>
+            </li>
+          </ul>	-->	
+		
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Hasil Kajian</div>
+                            
+													<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                <div class="sb-nav-link-icon "></div>
+                               Pengendalian Erosi dan Sedimen
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapse2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a href="erosi.html"><h6>SubDAS Prioritas</h6></a>
+                            </div>
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                <div class="sb-nav-link-icon"></div>
+                               Tata Kelola Air dan Ekosistem Air Tawar
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapse2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a href="limpasan.html"><h6>Pengendalian Limpasan</h6></a>
+                                    <a href="kebutuhan_air.html"><h6>Kebutuhan Air</h6></a>
+                                    <a href="ekologi.html"><h6>Habitat</h6></a>					
+                                </nav>
+                            </div>
+							
+							
+						                       
+                        </div>
+                    </div>
+					
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Tahun 2022</div>
+                        DAS Mahakam
+                    </div>
+                </nav>
+            </div>
+            
+			<div id="layoutSidenav_content">
+            <!-- BAGIAN PETA -->
+			<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
+			<script src="assets/leaflet-measure/leaflet-measure.js"></script>	
+			<script src="assets/leaflet-mouseposition/L.Control.MousePosition.js"></script>
+							
+		<!-- Modal Info -->
+           <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-info">
+                  <h5 class="modal-title" id="exampleModalCenterTitle"><i class="fa fa-exclamation-triangle"></i> Petunjuk</h5>
+                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End of Modal Info -->
+
+           <div class="modal fade" id="infoModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header alert-info">
+                  <h5 class="modal-title" id="exampleModalCenterTitle"><i class="fas fa-info-circle"></i> Informasi</h5>
+                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body" style="text-align: center; ">
+                  <p></p>
+                  <p></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End of Modal Info -->
+
+              <!-- Bootstrap Modal -->
+              <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title text-primary" id="feature-title"></h4>
+                      <button class="close" type="button" data-bs-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body" id="feature-info"></div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+			  
+	<!-- HTML Block untuk menampilkan peta -->
+		<div id='map'></div>
+		<script type="text/javascript">
+		var map = L.map('map', {zoomControl: false}).setView([0.4051277, 116.0458820],8); //lat,long,zoom
+		
+    	/* Tile Basemap */
+      var basemap1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+      attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      });
+      var basemap2 = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+      maxZoom: 20,
+      subdomains:['mt0','mt1','mt2','mt3'],
+      attribution: 'Google Satellite'
+      });
+     
+      basemap2.addTo(map); //=============Memanggil basemap untuk ditampilkan ketika halaman dipanggil
+
+ /*================================================================= GeoJSON Polyligon */
+    map.createPane("pane_mahakam_area_erosi");
+    map.getPane("pane_mahakam_area_erosi").style.zIndex = 301;
+    
+var areaColors = {"Dipertahankan":"#F59625", 
+                  "Prioritas Dipulihkan":"#D65252", 
+                  "Sangat Prioritas Dipulihkan":"#A51515",
+                };
+        /* GeoJSON Polygon */
+
+        var erosi = L.geoJson(null, {
+            pane: "pane_mahakam_area_erosi",
+
+          style: function (feature) { 
+            return {
+              fillColor: areaColors[feature.properties.Sed_21], 
+              fillOpacity: 0.1, 
+              color: areaColors[feature.properties.Sed_21], 
+              weight: 1.5, 
+              opacity: 0.7, 
+            };
+
+          },
+
+          onEachFeature: function (feature, layer) {
+            layer.on({
+              mouseover: function (e) { 
+                var layer = e.target; 
+                layer.setStyle({ 
+                  weight: 2, 
+                  color: "#00FFFF", 
+                  opacity: 1, 
+                  fillColor: "yellow", 
+                  fillOpacity: 0.2, 
+                });
+              },
+              mouseout: function (e) { 
+                erosi.resetStyle(e.target); 
+                map.closePopup(); 
+              },
+              click: function (e) { 
+                var content = "<table class='table table-striped table-bordered'>" +
+                "<tr><th>Kode SubDAS</th><td>" + feature.properties.SubDAS_id + "</td></tr>" +
+                "<tr><th>Nama SubDAS (Sementara)</th><td>" + feature.properties.Toponim + "</td></tr>" +
+                "<tr><th>Tingkat Prioritas</th><td>" + feature.properties.Sed_21 + "</td></tr>" +
+                
+                "</table>";
+
+                //erosi.bindPopup(content); 
+
+              $("#feature-title").html("Keterangan"); //Judul Modal
+              $("#feature-info").html(content); //Isi Modal
+              $("#featureModal").modal("show"); //Menampilkan featureModal
+              },
+            });
+          },
+
+        });
+        $.getJSON("data/prioritas_das.geojson", function (data) {
+          erosi.addData(data);
+          map.addLayer(erosi); 
+        });
+
+
+/*================================================================= GeoJSON Polyligon */
+    map.createPane("pane_sungai_1");
+    map.getPane("pane_sungai_1").style.zIndex = 401;
+    
+//var areaColors = {"bangunan":"#bd0026", 
+//                  "outbond":"#fd8d3c", 
+//                  "kolam":"#1b56b5",
+//                  "taman":"#0c9c29",
+//                  "terjun":"#2ff5eb",
+//                  "parkir":"#ffffb2",
+//                  "loket":"#4d22a3"
+//                };
+        /* GeoJSON Polygon */
+
+        var sungai = L.geoJson(null, {
+            pane: "pane_sungai_1",
+
+          style: function (feature) { 
+            return {
+              fillColor: "#87CEEB", 
+              fillOpacity: 0.1, 
+              color: "#87CEEB", 
+              weight: 1.5, 
+              opacity: 0.7, 
+            };
+
+          },
+
+          onEachFeature: function (feature, layer) {
+            layer.on({
+              mouseover: function (e) { 
+                var layer = e.target; 
+                layer.setStyle({ 
+                  weight: 2, 
+                  color: "#00FFFF", 
+                  opacity: 1, 
+                  fillColor: "#1E90FF", 
+                  fillOpacity: 0.1, 
+                });
+              },
+              mouseout: function (e) { 
+                sungai.resetStyle(e.target); 
+                map.closePopup(); 
+              },
+              click: function (e) { 
+                var content = "<table class='table table-striped table-bordered'>" +
+                "<tr><th>Sungai</th><td>" + feature.properties.NAMOBJ + "</td></tr>" +
+                
+                "</table>";
+
+                //sungai.bindPopup(content); 
+
+              $("#feature-title").html("Keterangan"); //Judul Modal
+              $("#feature-info").html(content); //Isi Modal
+              $("#featureModal").modal("show"); //Menampilkan featureModal
+              },
+            });
+          },
+
+        });
+        $.getJSON("data/sungai_area.geojson", function (data) {
+          sungai.addData(data);
+          map.addLayer(sungai); 
+        });
+
+//================================================================= GeoJSON Polyligon */
+    map.createPane("pane_danau");
+    map.getPane("pane_danau").style.zIndex = 501;
+    
+// var areaColors = {"bangunan":"#bd0026", 
+//                  "outbond":"#fd8d3c", 
+//                  "kolam":"#1b56b5",
+//                  "taman":"#0c9c29",
+//                  "terjun":"#2ff5eb",
+//                  "parkir":"#ffffb2",
+//                  "loket":"#4d22a3"
+//                };
+        /* GeoJSON Polygon */
+
+        var danau = L.geoJson(null, {
+            pane: "pane_danau",
+
+          style: function (feature) { 
+            return {
+              fillColor: "#1E90FF", 
+              fillOpacity: 0.1, 
+              color: "#1E90FF", 
+              weight: 1.5, 
+              opacity: 0.7, 
+            };
+
+          },
+
+          onEachFeature: function (feature, layer) {
+            layer.on({
+              mouseover: function (e) { 
+                var layer = e.target; 
+                layer.setStyle({ 
+                  weight: 2, 
+                  color: "#00FFFF", 
+                  opacity: 1, 
+                  fillColor: "#1E90FF", 
+                  fillOpacity: 0.1, 
+                });
+              },
+              mouseout: function (e) { 
+                danau.resetStyle(e.target); 
+                map.closePopup(); 
+              },
+              click: function (e) { 
+                var content = "<table class='table table-striped table-bordered'>" +
+                "<tr><th>Danau</th><td>" + feature.properties.danau + "</td></tr>" +
+                
+                "</table>";
+
+                //danau.bindPopup(content); 
+
+              $("#feature-title").html("Keterangan"); //Judul Modal
+              $("#feature-info").html(content); //Isi Modal
+              $("#featureModal").modal("show"); //Menampilkan featureModal
+              },
+            });
+          },
+
+        });
+        $.getJSON("data/danau_area.geojson", function (data) {
+          danau.addData(data);
+          map.addLayer(danau); 
+        });
+
+
+//======================================================== Batas Wilayah
+    map.createPane("pane_wilayah");
+    map.getPane("pane_wilayah").style.zIndex = 601;
+    
+
+        /* GeoJSON Polygon */
+
+        var wilayah = L.geoJson(null, {
+            pane: "pane_wilayah",
+
+          style: function (feature) { 
+            return {
+              fillColor: "black", 
+              fillOpacity: 0.1, 
+              color: "black", 
+              weight: 1.5, 
+              opacity: 0.7,
+              dashArray: '5,5', 
+            };
+
+          },
+
+          onEachFeature: function (feature, layer) {
+            layer.on({
+              mouseover: function (e) { 
+                var layer = e.target; 
+                layer.setStyle({ 
+                  weight: 2, 
+                  color: "#00FFFF", 
+                  opacity: 1, 
+                  fillColor: "#1E90FF", 
+                  fillOpacity: 0.1, 
+                });
+              },
+              mouseout: function (e) { 
+                wilayah.resetStyle(e.target); 
+                map.closePopup(); 
+              },
+              click: function (e) { 
+                var content = "<table class='table table-striped table-bordered'>" +
+                "<tr><th>Kecamatan</th><td>" + feature.properties.NAMOBJ + "</td></tr>" +
+                "<tr><th>Kabupaten/Kota</th><td>" + feature.properties.WADMKK + "</td></tr>" +
+                
+                "</table>";
+
+                wilayah.bindPopup(content); 
+
+              //$("#feature-title").html("Keterangan"); //Judul Modal
+              //$("#feature-info").html(content); //Isi Modal
+              //$("#featureModal").modal("show"); //Menampilkan featureModal
+              },
+            });
+          },
+
+        });
+        $.getJSON("data/wilayah_area.geojson", function (data) {
+          wilayah.addData(data);
+          //map.addLayer(wilayah); 
+        });
+//=================================Judul
+			var title = new L.Control();
+			title.onAdd = function (map) {
+			  this._div = L.DomUtil.create('div', 'info');
+			  this.update();
+			  return this._div;
+			};
+			title.update = function () {
+			  this._div.innerHTML = '<h4>Prioritas Pengendalian</h2>Erosi dan Sedimen'
+			};
+			title.addTo(map);
+
+      // =========================Control Layer==============================//
+
+            //Control layers
+      var baseMaps = { 
+        'OpenStreetMap': basemap1,
+        'Google Satellite': basemap2,
+       
+      };
+      var layers = {
+		'Sungai':sungai,
+      	'Danau':danau,
+        'Prioritas':erosi,
+        'Batas Kecamatan':wilayah,
+      };
+
+          var layerControl = L.control.layers(baseMaps,layers, {collapsed:false});
+      layerControl.addTo(map)
+			
+        //========================================================= Control legend
+				var legend = L.control({position: 'bottomright'}), legenditem;
+
+				legend.onAdd = function (map) {
+ 				this._div = L.DomUtil.create('div', 'legend'), legenditem = [];
+  			this.update();
+  			return this._div;
+				};
+
+			legend.update = function () {
+  		this._div.innerHTML = '<h5>Legenda</h5><hr>' + legenditem.join('<hr>');
+			};
+
+			legend.addTo(map);
+//================================================= Legend for each layer
+var legend_erosi = '<img src="assets/images/prioritas.png" width="150">',
+legend_danau = '<img class="imglegend" src="assets/images/danau.png" width="50">',
+legend_sungai = '<img class="imglegend" src="assets/images/sungai.png" width="50">',
+legend_wilayah = '<img class="imglegend" src="assets/images/admin.png" width="150">';
+
+map.on("overlayadd", function(e) {
+  if (e.layer === sungai) {
+    legenditem.push(legend_sungai);
+    legend.update();
+  }
+  if (e.layer === danau) {
+    legenditem.push(legend_danau);
+    legend.update();
+  }
+  if (e.layer === erosi) {
+    legenditem.push(legend_erosi);
+    legend.update();
+  }
+    if (e.layer === wilayah) {
+    legenditem.push(legend_wilayah);
+    legend.update();
+  }
+});
+
+map.on("overlayremove", function(e) {
+  if (e.layer === sungai) {
+    for( var i = 0; i < legenditem.length; i++){
+      if ( legenditem[i] === legend_sungai) {
+        legenditem.splice(i, 1);
+      }
+    }
+    legend.update();
+  }
+  if (e.layer === danau) {
+    for( var i = 0; i < legenditem.length; i++){
+      if ( legenditem[i] === legend_danau) {
+        legenditem.splice(i, 1);
+      }
+    }
+    legend.update();
+  }
+  if (e.layer === erosi) {
+    for( var i = 0; i < legenditem.length; i++){
+      if ( legenditem[i] === legend_erosi) {
+        legenditem.splice(i, 1);
+      }
+    }
+    legend.update();
+  }
+    if (e.layer === wilayah) {
+    for( var i = 0; i < legenditem.length; i++){
+      if ( legenditem[i] === legend_wilayah) {
+        legenditem.splice(i, 1);
+      }
+    }
+    legend.update();
+  }
+});
+		//==============================Mouse Coordinate
+		L.control.mousePosition({
+			separator: ',',
+			prefix: 'Koordinat : '
+			}).addTo(map);
+	  
+		//========================Scale Bar================
+		L.control.scale({
+			maxWidth: 150,
+			imperial: false,
+			}).addTo(map);
+		
+		//zoomhome
+	    var zoomHome = L.Control.zoomHome();
+        zoomHome.addTo(map);
+		
+		//=============Geolocation
+        var locateControl = L.control.locate({
+			position: "topleft",
+			drawCircle: true,
+			follow: true,
+			setView: true,
+			keepCurrentZoomLevel: false,
+			markerStyle: {
+			 weight: 1,
+			 opacity: 0.8,
+			 fillOpacity: 0.8,
+			},
+			circleStyle: {
+			 weight: 1,
+			 clickable: false,
+			},
+			icon: "fa fa-crosshairs",
+			metric: true,
+			strings: {
+			title: "Klik untuk mengetahui lokasimu",
+			popup: "Lokasimu sekarang di sini. Akurasi {distance} {unit}",
+			outsideMapBoundsMsg: "Kamu berada di luar area peta"
+			},
+			locateOptions: {
+			maxZoom: 15,
+			watch: true,
+			enableHighAccuracy: true,
+			maximumAge: 10000,
+			timeout: 10000
+			}
+		}).addTo(map);
+	  
+	  //============measurement
+		var measureControl = new L.Control.Measure({
+			position: "topleft",
+			primaryLengthUnit: 'meters',
+			secondaryLengthUnit: 'kilometers',
+			primaryAreaUnit: 'hectares',
+			secondaryAreaUnit: 'sqmeters',
+			activeColor: 'green',
+			completedColor: 'blue'
+		});
+		measureControl.addTo(map);
+
+
+	  		
+// Loading control
+     var loadingControl = L.Control.loading({
+		  separate: true
+        });
+		map.addControl(loadingControl);
+	
+     </script>	 
+	 <!-- BATAS BAGIAN PETA -->
+            </div>
+        </div>
+		
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="assets/js/scripts.js"></script>
+	
+		<!-- Bootstrap core JavaScript -->
+		  <script src="vendor/jquery/jquery.min.js"></script>
+		  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- FlyTo --> 
+		  <script src="assets/js/zoomto.js"></script>
+		  
+		<!-- untuk memperbaiki tampilan peta yang tidak ter-load dgn baik -->  
+		  <script>map.invalidateSize(true);</script>
+	</body>
+</html>

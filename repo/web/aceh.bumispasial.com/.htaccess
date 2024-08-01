@@ -1,0 +1,4 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^acehtamiang\.bumispasial\.com$
+RewriteRule ^/?$ "http\:\/\/acehtamiang\.bumispasial\.com\/peta_aceh\.html" [R=301,L]

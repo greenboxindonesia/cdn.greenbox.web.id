@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sistem Informasi "One Map Policy" Bidang Kebencanaan Kabupaten Aceh Tamiang</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
+<!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 60px; bottom: 0; width: 100%; }
+p {font-size: 0.85em; margin:5px;}
+</style>
+</head>
+<body>
+	<style>
+		#content {
+        width: 600px;
+		  }
+		  #container {
+			width: 600px;
+			height: 400px;
+			margin: 20px 0;
+			display: grid;
+		  }
+		
+		#menu {
+		background: #fff;
+		position: absolute;
+		z-index: 1;
+		top: 70px;
+		right: 10px;
+		border-radius: 1px;
+		width: 180px;
+		border: 1px solid rgba(0, 0, 0, 0.5);
+		font-family: 'Open Sans', sans-serif;
+		}
+		 
+		#menu a {
+		font-size: 13px;
+		color: #404040;
+		display: block;
+		margin: 0;
+		padding: 3px;
+		text-decoration: none;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+		text-align: center;
+		}
+		 
+		#menu a:last-child {
+		border: none;
+		}
+		 
+		#menu a:hover {
+		background-color: #f8f8f8;
+		color: #404040;
+		}
+		 
+		#menu a.active {
+		background-color: #86e168;
+		color: #ffffff;
+		}
+		 
+		#menu a.active:hover {
+		background: #6cc44f;
+		}
+		
+		.mapboxgl-popup {
+		max-width: 400px;
+		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		}
+		
+		.map-overlay {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.8);
+		margin-bottom: 30px;
+        margin-right: 10px;
+        font-family: Arial, sans-serif;
+		display: inline-block;
+		overflow-y: auto;
+        border-radius: 3px;
+		}
+
+		.calculation-box {
+		height: 75px;
+		width: 150px;
+		position: absolute;
+		bottom: 70px;
+		left: 12px;
+		background-color: rgba(255, 255, 255, 0.9);
+		padding: 15px;
+		text-align: center;
+		}
+		p {
+		font-family: 'Open Sans';
+		margin: 0;
+		font-size: 14px;
+		}
+	</style>
+	<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
+	<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.css" type="text/css">
+	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    
+      <a class="navbar-brand" href="#"><b>Sistem Informasi "One Map Policy" Bidang Kebencanaan Kabupaten Aceh Tamiang</b></a>
+    
+	</nav>
+	
+	<nav id="menu"></nav>
+	<div id="map"></div>
+	<div class="map-overlay" id="features">
+		<p>Indeks kerawanan bencana</p>
+		<img src="assets/images/Indeks.PNG" width="300">
+	</div>
+	<div class="calculation-box">
+		<p>Jarak</p>
+		<div id="calculated-length"></div>
+	</div>
+		
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoicGljYWNwIiwiYSI6ImNqZzdrb20zYzNnY2QycW82c2llb2VuZmwifQ.aAoJCI6KpeqQwDlovhb1jQ';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        zoom: 9.2,
+        center: [97.98157, 4.21000],
+        style: 'mapbox://styles/mapbox/satellite-v9'
+    });
+	
+    map.on('load', () => {
+		<!--Mapbox DEM untuk basemap 3D-->
+		map.addSource('mapbox-dem', {
+			'type': 'raster-dem',
+			'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+			'tileSize': 512,
+			'maxzoom': 14
+		});
+		// add the DEM source as a terrain layer with exaggerated height
+		map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 2 });
+		// add a sky layer that will show when the map is highly pitched
+		map.addLayer({
+			'id': 'sky',
+			'type': 'sky',
+			'paint': {
+			'sky-type': 'atmosphere',
+			'sky-atmosphere-sun': [0.0, 0.0],
+			'sky-atmosphere-sun-intensity': 15
+			}
+		});
+	
+		<!--Batas-->
+		map.addSource('batas', {
+            'type': 'geojson',
+            'data': 'assets/layer/batas.geojson',
+        });		
+		map.addLayer({
+            'id': 'batas_fill',
+            'type': 'fill',
+            'source': 'batas',
+			'layout': { 'visibility': 'visible' },
+			'paint': {
+				'fill-color': '#ffffff',
+				'fill-opacity': 0.1,
+			}
+        });
+        map.addLayer({
+            'id': 'batas',
+            'type': 'line',
+            'source': 'batas',
+			'layout': { 'visibility': 'visible' },
+			'paint': {
+				'line-color': 'green',
+				'line-width': 2,
+				'line-dasharray': [2, 2] //garis titik-titik
+			}
+        });
+		
+		<!--DEM-->
+        map.addSource('DEM', {
+            'type': 'image',
+            'url': 'assets/layer/dem.png',
+            'coordinates': [
+                [97.714747114, 4.52356545415],
+                [98.2854139395, 4.52356545415],
+                [98.2854139395, 3.88359051262],
+                [97.714747114, 3.88359051262]
+            ]
+        });
+        map.addLayer({
+            id: 'DEM',
+            'type': 'raster',
+            'source': 'DEM',
+			'layout': { 'visibility': 'none' },
+            'paint': {
+                'raster-fade-duration': 0
+            }
+        });
+		
+		<!--Topografi-->
+		map.addSource('topografi', {
+            'type': 'geojson',
+            'data': 'assets/layer/topografi.geojson',
+        });
+        map.addLayer({
+            'id': 'Topografi',
+            'type': 'fill',
+            'source': 'topografi',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'Kode',
+					type: 'categorical',
+						stops: [
+							['E', '#dd2a12'],
+							['D', '#ff9429'],
+							['C', '#ffe20d'],
+							['B', '#7fe545'],
+							['A', '#52b01d'],
+						]
+				},
+				'fill-opacity': 0.75,
+				'fill-outline-color': '#f0f0f0',
+			}
+        });
+				
+		<!--Sistem Lahan-->
+		map.addSource('Sistem_Lahan', {
+            'type': 'geojson',
+            'data': 'assets/layer/sistemlahan.geojson',
+        });
+        map.addLayer({
+            'id': 'Sistem Lahan',
+            'type': 'fill',
+            'source': 'Sistem_Lahan',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'SImbol',
+					type: 'categorical',
+						stops: [
+							['AMI', '#F2F12D'],
+							['BPD', '#7A4900'],
+							['GGD', '#63FFAC'],
+							['KHY', "#4FC601"],
+							['KJP', "#3B5DFF"],
+							['MPT', "#d91818"],
+							['MTL', "#f24ad6"],
+							['PDH', '#d71a67'],
+							['PTG', "#73ceff"],
+							['SBG', "#ffb673"],
+							['TWH', "#ffa500"],
+							['-', "#338b21"],
+						]
+				},
+				'fill-opacity': 0.75,
+				'fill-outline-color': '#f0f0f0',
+			}
+        });
+		
+		<!--Banjir-->		
+		map.addSource('Banjir', {
+            'type': 'geojson',
+            'data': 'assets/layer/banjir.geojson',
+        });
+        map.addLayer({
+            'id': 'Banjir',
+            'type': 'fill',
+            'source': 'Banjir',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'kode',
+					type: 'categorical',
+						stops: [
+							['A', '#dd2a12'],
+							['B', '#ffe20d'],
+							['C', '#7fe545'],
+							['D', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+				'fill-outline-color': '#f0f0f0',
+			}
+        });
+		
+		<!--Banjir Bandang-->	
+		map.addSource('Banjir_Bandang', {
+            'type': 'geojson',
+            'data': 'assets/layer/bandang.geojson',
+        });
+        map.addLayer({
+            'id': 'Banjir Bandang',
+            'type': 'fill',
+            'source': 'Banjir_Bandang',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'keterangan',
+					type: 'categorical',
+						stops: [
+							['Tinggi', '#dd2a12'],
+							['Sedang', '#ffe20d'],
+							['C', '#7fe545'],
+							['D', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+				'fill-outline-color': '#f0f0f0',
+			}
+        });
+		
+		<!--Tanah Longsor-->
+		map.addSource('Tanah_Longsor', {
+            'type': 'geojson',
+            'data': 'assets/layer/tanahlongsor.geojson',
+        });
+        map.addLayer({
+            'id': 'Tanah Longsor',
+            'type': 'fill',
+            'source': 'Tanah_Longsor',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'kode',
+					type: 'categorical',
+						stops: [
+							['A', '#dd2a12'],
+							['B', '#ffe20d'],
+							['C', '#7fe545'],
+							['D', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+				'fill-outline-color': '#f0f0f0',
+			}
+        });
+		
+		<!--Kekeringan-->		
+		map.addSource('Kekeringan', {
+            'type': 'geojson',
+            'data': 'assets/layer/kekeringan.geojson',
+        });
+        map.addLayer({
+            'id': 'Kekeringan',
+            'type': 'fill',
+            'source': 'Kekeringan',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'kode',
+					type: 'categorical',
+						stops: [
+							['A', '#dd2a12'],
+							['B', '#ffe20d'],
+							['C', '#7fe545'],
+							['D', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+				'fill-outline-color': '#f0f0f0',
+			}
+        });
+		
+		<!--Cuaca Ekstrem-->
+		map.addSource('Cuaca_Ekstrem', {
+            'type': 'geojson',
+            'data': 'assets/layer/cuacaekstrem.geojson',
+        });
+        map.addLayer({
+            'id': 'Cuaca Ekstrem',
+            'type': 'fill',
+            'source': 'Cuaca_Ekstrem',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'kode',
+					type: 'categorical',
+						stops: [
+							['A', '#dd2a12'],
+							['B', '#ffe20d'],
+							['C', '#7fe545'],
+							['D', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+				'fill-outline-color': '#f0f0f0',
+			}
+        });
+		
+		<!--Gelombang Ekstrem-->		
+		map.addSource('Gelombang_Ekstrem', {
+            'type': 'geojson',
+            'data': 'assets/layer/gelombangekstrem.geojson',
+        });
+        map.addLayer({
+            'id': 'Gelombang Ekstrem',
+            'type': 'fill',
+            'source': 'Gelombang_Ekstrem',
+			'layout': { 'visibility': 'none' },
+			'paint': {
+				'fill-color': {
+					property: 'kode',
+					type: 'categorical',
+						stops: [
+							['A', '#dd2a12'],
+							['B', '#ffe20d'],
+							['C', '#7fe545'],
+							['D', 'rgba(0, 0, 0, 0.25)'],
+						]
+				},
+				'fill-opacity': 0.75,
+				'fill-outline-color': '#f0f0f0',
+			}
+        });
+				
+		<!--Batas Kecamatan-->
+		map.addSource('kecamatan', {
+            'type': 'geojson',
+            'data': 'assets/layer/kec.geojson',
+        });		
+		map.addLayer({
+            'id': 'kecamatan',
+            'type': 'line',
+            'source': 'kecamatan',
+			'layout': { 'visibility': 'visible' },
+			'paint': {
+				'line-color': '#f0f0f0',
+				'line-width': 1.5,
+				'line-dasharray': [1, 2] //garis titik-titik
+			}
+        });
+		map.addLayer({
+		'id': 'label_kec',
+		'type': 'symbol',
+		'source': 'kecamatan',
+		'layout': {
+		'text-field': ['get', 'KEC'],
+		'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+		'text-radial-offset': 0.5,
+		'text-justify': 'auto',
+		'text-size':12,
+		},
+		'paint':{'text-color':'white', 'text-halo-color':'green', 'text-halo-width':1}		
+		});
+
+	});
+	
+		<!--POPUP-->
+		//Popup Topografi
+		var popup = new mapboxgl.Popup({
+			closeButton: false,
+			closeOnClick: true
+			});
+		map.on('mousemove', 'Topografi', function (e) {
+			popup
+			.setLngLat(e.lngLat)
+			.setHTML(e.features[0].properties.KETINGGIAN)
+			.addTo(map);
+			});
+		// Change the cursor to a pointer when the mouse is over the places layer.
+			map.on('mouseenter', 'Topografi', function () {
+			map.getCanvas().style.cursor = 'pointer';
+			});
+		// Change it back to a pointer (and close the popup) when it leaves.
+			map.on('mouseleave', 'Topografi', function () {
+			map.getCanvas().style.cursor = '';
+			popup.remove();
+			});
+			
+		// Popup Sistem Lahan
+		var popup = new mapboxgl.Popup({
+			closeButton: false,
+			closeOnClick: true
+			});
+		map.on('mousemove', 'Sistem Lahan', function (e) {
+			popup
+			.setLngLat(e.lngLat)
+			.setHTML(e.features[0].properties.DESLF_1)
+			.addTo(map);
+			});
+		// Change the cursor to a pointer when the mouse is over the places layer.
+			map.on('mouseenter', 'Sistem Lahan', function () {
+			map.getCanvas().style.cursor = 'pointer';
+			});
+		// Change it back to a pointer when it leaves.  (+menutup popup)
+			map.on('mouseleave', 'Sistem Lahan', function () {
+			map.getCanvas().style.cursor = '';
+			popup.remove();
+			});
+		
+		// After the last frame rendered before the map enters an "idle" state.
+		map.on('idle', () => {
+		// If these layers were not added to the map, abort
+		if (!map.getLayer('Banjir') || !map.getLayer('Cuaca Ekstrem') || !map.getLayer('Gelombang Ekstrem') || !map.getLayer('Kekeringan') || !map.getLayer('Tanah Longsor') || !map.getLayer('DEM') || !map.getLayer('Sistem Lahan')) {
+		return;
+		}
+ 
+		// Enumerate ids of the layers.
+		const toggleableLayerIds = ['DEM','Topografi','Sistem Lahan','Banjir','Banjir Bandang','Tanah Longsor','Kekeringan','Cuaca Ekstrem','Gelombang Ekstrem'];
+		 
+		// Set up the corresponding toggle button for each layer.
+		for (const id of toggleableLayerIds) {
+		// Skip layers that already have a button set up.
+		if (document.getElementById(id)) {
+		continue;
+		}
+		 
+		// Create a link.
+		const link = document.createElement('a');
+		link.id = id;
+		link.href = '#';
+		link.textContent = id;
+		link.className = ''; //defaultnya 'active'
+		 
+		// Show or hide layer when the toggle is clicked.
+		link.onclick = function (e) {
+		const clickedLayer = this.textContent;
+		e.preventDefault();
+		e.stopPropagation();
+		 
+		const visibility = map.getLayoutProperty(
+		clickedLayer,
+		'visibility'
+		);
+		 
+		// Toggle layer visibility by changing the layout object's visibility property.
+		if (visibility === 'visible') {
+		map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+		this.className = '';
+		} else {
+		this.className = 'active';
+		map.setLayoutProperty(
+		clickedLayer,
+		'visibility',
+		'visible'
+		);
+		}
+		};
+		 
+		const layers = document.getElementById('menu');
+		layers.appendChild(link);
+		}
+		});
+		
+		//skala
+		var scale = new mapboxgl.ScaleControl({
+		maxWidth: 250,
+		unit: 'imperial'
+		});
+		map.addControl(scale);
+		scale.setUnit('metric');
+		
+		//tombol kontrol
+		map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+		map.addControl(new mapboxgl.FullscreenControl(), 'top-left');
+		
+		//measurement
+		const draw = new MapboxDraw({
+			displayControlsDefault: false,
+			// Select which mapbox-gl-draw control buttons to add to the map.
+			controls: {
+			line_string:true,
+			trash: true
+			},
+		});
+		map.addControl(draw, 'top-left');
+		 
+		map.on('draw.create', updateLength);
+		map.on('draw.delete', updateLength);
+		map.on('draw.update', updateLength);
+		 
+		function updateLength(e) {
+		var data = draw.getAll();
+		var answer = document.getElementById('calculated-length');
+		if (data.features.length > 0) {
+			var length = turf.length(data);
+			// restrict to 2 decimal points
+			answer.innerHTML = '<p><strong>' + length + '</strong></p><p> meters</p>';
+		} else {
+			answer.innerHTML = '';
+			if (e.type !== 'draw.delete') alert("Use the draw tools to calculate a distance");
+		}
+		};
+</script>
+
+</body>
+</html>
